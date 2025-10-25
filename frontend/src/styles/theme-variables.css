@@ -1,0 +1,55 @@
+/**
+ * 主题CSS变量系统
+ * 职责：定义所有可主题化的CSS变量
+ */
+
+:root {
+  /* 默认主题变量（日间模式） */
+  
+  /* 背景色 */
+  --theme-background-primary: #ffffff;
+  --theme-background-secondary: #f9fafb;
+  --theme-background-gradient: linear-gradient(180deg, #fafafa 0%, #f5f5f5 100%);
+  
+  /* 文字颜色 */
+  --theme-text-primary: #404040;
+  --theme-text-secondary: #737373;
+  --theme-text-muted: #a3a3a3;
+  
+  /* 品牌色 */
+  --theme-brand-primary: #FF6D5A;
+  --theme-brand-secondary: #E85A48;
+  --theme-brand-gradient: linear-gradient(135deg, #FF6D5A 0%, #FF9472 100%);
+  
+  /* 功能色 */
+  --theme-success: #16a34a;
+  --theme-warning: #ea580c;
+  --theme-danger: #dc2626;
+  --theme-info: #2563eb;
+  
+  /* 边框和分割线 */
+  --theme-border: rgba(212, 212, 212, 0.5);
+  --theme-border-light: rgba(229, 229, 229, 0.5);
+  --theme-border-focus: #FF6D5A;
+  
+  /* 交互状态 */
+  --theme-hover: rgba(255, 109, 90, 0.08);
+  --theme-active: rgba(255, 109, 90, 0.12);
+  --theme-selected: rgba(255, 109, 90, 0.15);
+  
+  /* 阴影 */
+  --theme-shadow: rgba(0, 0, 0, 0.08);
+  --theme-shadow-light: rgba(0, 0, 0, 0.04);
+  --theme-shadow-heavy: rgba(0, 0, 0, 0.15);
+}
+
+/* 主题切换过渡动画 */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* 主题变量仅提供颜色定义，不覆盖默认样式 */
+/* 默认浅青色样式保持在各自的CSS文件中 */
+/* 暗夜主题通过.theme-dark选择器覆盖样式 */
+
+/* 保持默认样式不变，由各自的CSS文件控制 */

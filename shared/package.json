@@ -1,0 +1,12 @@
+{
+  "name": "interactive-fiction-shared",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "blockly": "^11.1.1",
+    "marked": "^11.1.1"
+  }
+}
+
+
