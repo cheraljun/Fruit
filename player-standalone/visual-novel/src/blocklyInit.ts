@@ -93,7 +93,7 @@ export function initializeBlockly(): void {
   // ============= 3. 注册代码生成器 =============
   // 自定义块的代码生成器
   Object.entries(codeGenerators).forEach(([blockType, generator]) => {
-    (javascriptGenerator as any)[blockType] = generator;
+    (javascriptGenerator as any).forBlock[blockType] = generator;
   });
 
   // ============= 通信层：连接 Blockly 和 RuntimePlugin =============

@@ -46,7 +46,10 @@ export type PluginHook =
   // 播放器相关
   | 'player:init'
   | 'player:render'
-  | 'player:command';
+  | 'player:command'
+  // Blockly扩展
+  | 'blockly:register-blocks'
+  | 'blockly:register-generators';
 
 /**
  * 插件元数据

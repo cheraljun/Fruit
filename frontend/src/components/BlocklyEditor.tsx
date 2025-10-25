@@ -9,6 +9,7 @@ import { javascriptGenerator } from 'blockly/javascript';
 import type { BlocklyWorkspaceState } from '../../../shared/types/blockly';
 import type { VariableDefinition } from '../../../shared/types/index.ts';
 import { useTheme } from '../contexts/ThemeContext';
+import { usePluginSystem } from '../contexts/PluginContext';
 import { initializeBlockly, createCustomToolbox } from '../utils/blocklyInit';
 
 interface BlocklyEditorProps {
@@ -28,6 +29,7 @@ function BlocklyEditor({
 }: BlocklyEditorProps): JSX.Element {
   const { currentTheme } = useTheme();
   const isDark = currentTheme === 'theme.dark';
+  const pluginSystem = usePluginSystem();
   const blocklyDivRef = useRef<HTMLDivElement>(null);
   const workspaceRef = useRef<Blockly.WorkspaceSvg | null>(null);
 
@@ -43,8 +45,11 @@ function BlocklyEditor({
       return;
     }
 
+    console.log('[BlocklyEditor] Starting Blockly initialization with plugin system');
+    
     // 初始化自定义积木块（全局只需一次）
-    initializeBlockly();
+    // 传入 pluginSystem，让游戏模组可以注册自己的积木
+    initializeBlockly(pluginSystem);
 
     const toolbox = createCustomToolbox();
 

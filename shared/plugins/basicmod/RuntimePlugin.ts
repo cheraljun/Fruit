@@ -149,17 +149,20 @@ export class RuntimePlugin extends PluginBase {
       return this.resolvePath(this.variables, path);
     }
     
-    // 处理函数调用: $fn.xxx(...)
-    if (expr.startsWith('$fn.')) {
-      const funcMatch = expr.match(/^\$fn\.(\w+)\((.*)\)$/);
-      if (funcMatch) {
-        const [, funcName, argsStr] = funcMatch;
-        const func = this.helperFunctions[funcName];
-        if (func) {
-          const args = argsStr ? argsStr.split(',').map(a => this.evaluateExpression(a.trim())) : [];
-          return func(...args);
-        }
+    // 处理函数调用: $fn.xxx(...) 或直接 xxx(...)
+    const funcMatch = expr.match(/^(?:\$fn\.)?(\w+)\((.*)\)$/);
+    if (funcMatch) {
+      const [, funcName, argsStr] = funcMatch;
+      const func = this.helperFunctions[funcName];
+      if (func) {
+        const args = argsStr ? argsStr.split(',').map(a => this.evaluateExpression(a.trim())) : [];
+        return func(...args);
       }
+    }
+    
+    // 默认尝试作为变量名访问（兼容旧语法）
+    if (this.variables[expr] !== undefined) {
+      return this.variables[expr];
     }
     
     // 默认返回undefined
@@ -287,9 +290,18 @@ export class RuntimePlugin extends PluginBase {
   }
 
   /**
-   * 注册辅助函数
+   * 注册辅助函数（内部使用）
    */
   public registerHelper(name: string, fn: Function): void {
+    this.helperFunctions[name] = fn;
+  }
+
+  /**
+   * 注册自定义函数（供游戏模组使用）
+   * 这些函数可以在 Blockly 脚本中被调用
+   */
+  public registerFunction(name: string, fn: Function): void {
+    console.log(`[RuntimePlugin] Registering custom function: ${name}`);
     this.helperFunctions[name] = fn;
   }
 
@@ -298,6 +310,14 @@ export class RuntimePlugin extends PluginBase {
    */
   public getHelperFunctions(): Record<string, Function> {
     return { ...this.helperFunctions };
+  }
+  
+  /**
+   * 获取变量对象（供游戏模组使用）
+   * 允许游戏模组直接操作变量
+   */
+  public get vars(): Record<string, any> {
+    return this.variables;
   }
 
   // ========== Blockly 脚本执行钩子 ==========

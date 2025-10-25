@@ -11,15 +11,14 @@ import type { ChoiceWithTarget } from '../../../shared/types/index';
 import api from '../services/api.ts';
 import { guestStorage } from '../services/GuestStorage.ts';
 import config from '../config/index.ts';
-import { initializeBlockly } from '../utils/blocklyInit';
+import { initializeBlockly } from '../utils/blocklyInit.ts';
+import { usePluginSystem } from '../contexts/PluginContext.tsx';
 import '../styles/player.css';
-
-// 确保 Blockly 在模块加载时就初始化
-initializeBlockly();
 
 function Player(): JSX.Element {
   const { id, username, gameId } = useParams<{ id?: string; username?: string; gameId?: string }>();
   const navigate = useNavigate();
+  const pluginSystem = usePluginSystem();
   const [searchParams] = useSearchParams();
   const [messages, setMessages] = useState<TerminalMessage[]>([]);
   const [currentChoices, setCurrentChoices] = useState<ChoiceWithTarget[]>([]);
@@ -28,6 +27,12 @@ function Player(): JSX.Element {
   const inputRef = useRef<HTMLInputElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
+
+  // 初始化 Blockly（仅初始化代码生成器，不显示编辑器）
+  useEffect(() => {
+    console.log('[Player] Initializing Blockly code generator...');
+    initializeBlockly(pluginSystem);
+  }, [pluginSystem]);
 
   useEffect(() => {
     loadAndStartStory(username, gameId, id);

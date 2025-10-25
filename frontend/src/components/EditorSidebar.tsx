@@ -353,7 +353,10 @@ function EditorSidebar({
         </div>
 
         {/* 6. 模组 */}
-        <ScriptHelper />
+        <ScriptHelper 
+          variables={variables}
+          onVariablesChange={onVariablesChange}
+        />
 
         {/* 7. 工具 */}
         <div className="section">

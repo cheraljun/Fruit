@@ -17,15 +17,23 @@ import * as ZhHans from 'blockly/msg/zh-hans';
 import { BlocklyPlugin } from '../../../shared/plugins/basicmod/BlocklyPlugin';
 import { BlocklyExecutor } from '../../../shared/core/BlocklyExecutor';
 import type { BlocklyWorkspaceState } from '../../../shared/types/blockly';
+import type { PluginSystem } from '../../../shared/plugin/PluginSystem';
 
 let isInitialized = false;
 
 /**
  * 初始化 Blockly - 包含所有内置功能 + 自定义积木块
  * 只需要调用一次
+ * 
+ * @param pluginSystem - 插件系统实例（必须）。通过钩子收集所有插件的积木定义
  */
-export function initializeBlockly(): void {
-  if (isInitialized) return;
+export function initializeBlockly(pluginSystem: PluginSystem): void {
+  if (isInitialized) {
+    console.log('[Blockly] Already initialized, skipping');
+    return;
+  }
+  
+  console.log('[Blockly] Starting initialization with PluginSystem...');
 
   // ============= 0. 设置中文语言 =============
   Blockly.setLocale(ZhHans as any);
@@ -77,23 +85,33 @@ export function initializeBlockly(): void {
 
   console.log(`[Blockly] Built-in blocks available: ${builtinBlockTypes.length} types`);
 
-  // ============= 2. 注册自定义积木块（互动小说专用）=============
-  const blockDefinitions = BlocklyPlugin.getCustomBlockDefinitions();
-  const codeGenerators = BlocklyPlugin.getCodeGenerators();
-
-  // 注册互动小说专用积木块
-  blockDefinitions.story.forEach((blockDef: any) => {
+  // ============= 2. 注册自定义积木块（互动小说专用 + 游戏模组）=============
+  console.log('[Blockly] Step 2: Collecting custom blocks from plugins...');
+  
+  // 通过钩子收集所有插件的积木块定义
+  const allCustomBlocks: any[] = pluginSystem.trigger('blockly:register-blocks', []);
+  console.log(`[Blockly] Collected ${allCustomBlocks.length} custom blocks`);
+  
+  // 通过钩子收集所有插件的代码生成器
+  const allCustomGenerators: Record<string, any> = pluginSystem.trigger('blockly:register-generators', {});
+  console.log(`[Blockly] Collected ${Object.keys(allCustomGenerators).length} code generators`);
+  
+  // 批量注册积木块
+  console.log('[Blockly] Registering blocks to Blockly.Blocks...');
+  allCustomBlocks.forEach((blockDef: any) => {
     Blockly.Blocks[blockDef.type] = {
       init: function() {
         this.jsonInit(blockDef);
       }
     };
+    console.log(`[Blockly]   Registered block: ${blockDef.type}`);
   });
 
   // ============= 3. 注册代码生成器 =============
-  // 自定义块的代码生成器
-  Object.entries(codeGenerators).forEach(([blockType, generator]) => {
-    (javascriptGenerator as any)[blockType] = generator;
+  console.log('[Blockly] Step 3: Registering code generators...');
+  Object.entries(allCustomGenerators).forEach(([blockType, generator]) => {
+    (javascriptGenerator as any).forBlock[blockType] = generator;
+    console.log(`[Blockly]   Registered generator: ${blockType}`);
   });
 
   // ============= 通信层：连接 Blockly 和 RuntimePlugin =============
@@ -211,7 +229,10 @@ export function initializeBlockly(): void {
   });
 
   isInitialized = true;
-  console.log('[Blockly] ✓ All blocks initialized (built-in + custom)');
+  console.log('[Blockly] Initialization complete!');
+  console.log(`[Blockly] Total custom blocks: ${allCustomBlocks.length}`);
+  console.log(`[Blockly] Total custom generators: ${Object.keys(allCustomGenerators).length}`);
+  console.log('[Blockly] Ready to use!');
 }
 
 /**
@@ -230,6 +251,17 @@ export function createCustomToolbox() {
         contents: [
           { kind: 'block', type: 'story_random' },
           { kind: 'block', type: 'story_show_text' }
+        ]
+      },
+      
+      // 时间类别
+      {
+        kind: 'category',
+        name: '时间',
+        colour: 45,
+        contents: [
+          { kind: 'block', type: 'time_add' },
+          { kind: 'block', type: 'time_format' }
         ]
       },
 

@@ -7,11 +7,10 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PlayerCore } from '../../../shared/player/PlayerCore.ts';
 import type { Story, CurrentNode, ChoiceWithTarget, CharacterImages } from '../../../shared/types/index.ts';
-import { initializeBlockly } from '../utils/blocklyInit.ts';
 import config from '../config/index.ts';
+import { initializeBlockly } from '../utils/blocklyInit.ts';
+import { usePluginSystem } from '../contexts/PluginContext.tsx';
 import '../styles/visual-novel-player.css';
-
-initializeBlockly();
 
 interface Props {
   story: Story;
@@ -19,6 +18,7 @@ interface Props {
 
 function VisualNovelPlayer({ story }: Props): JSX.Element {
   const navigate = useNavigate();
+  const pluginSystem = usePluginSystem();
   const [currentText, setCurrentText] = useState<string>('');
   const [background, setBackground] = useState<string>('');
   const [characterImages, setCharacterImages] = useState<CharacterImages>({});
@@ -27,6 +27,12 @@ function VisualNovelPlayer({ story }: Props): JSX.Element {
   const [commandFeedback, setCommandFeedback] = useState<string>('');
   const playerRef = useRef<PlayerCore | null>(null);
   const dialogueBoxRef = useRef<HTMLDivElement>(null);
+
+  // 初始化 Blockly（仅初始化代码生成器，不显示编辑器）
+  useEffect(() => {
+    console.log('[VisualNovelPlayer] Initializing Blockly code generator...');
+    initializeBlockly(pluginSystem);
+  }, [pluginSystem]);
 
   useEffect(() => {
     startStory();
@@ -215,21 +221,21 @@ function VisualNovelPlayer({ story }: Props): JSX.Element {
             <div className="vn-feedback">{commandFeedback}</div>
           )}
         </div>
+        
+        {currentChoices.length > 0 && !gameEnded && (
+          <div className="vn-choices">
+            {currentChoices.map((choice) => (
+              <span
+                key={choice.id}
+                className="vn-choice-link"
+                onClick={() => handleChoice(choice.id)}
+              >
+                {choice.text}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
-      
-      {currentChoices.length > 0 && !gameEnded && (
-        <div className="vn-choices">
-          {currentChoices.map((choice) => (
-            <button
-              key={choice.id}
-              className="vn-choice-button"
-              onClick={() => handleChoice(choice.id)}
-            >
-              {choice.text}
-            </button>
-          ))}
-        </div>
-      )}
       
       {gameEnded && (
         <div className="vn-game-over">

@@ -4,10 +4,15 @@
  */
 
 export * from './types.js';
+export { TimeSystemPlugin } from './TimeSystemPlugin.js';
+
+import { TimeSystemPlugin } from './TimeSystemPlugin.js';
 
 /**
  * 创建所有游戏模组插件实例
  */
 export function createGameModPlugins() {
-  return [];
+  return [
+    new TimeSystemPlugin()
+  ];
 }

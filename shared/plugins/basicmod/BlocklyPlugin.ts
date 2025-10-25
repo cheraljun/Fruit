@@ -20,21 +20,79 @@ export class BlocklyPlugin extends PluginBase {
   };
 
   protected async onInstall(): Promise<void> {
-    // 在前端环境注册自定义积木块
-    if (typeof (globalThis as any).window !== 'undefined') {
-      this.registerCustomBlocks();
-    }
+    console.log('[BlocklyPlugin] Installed - blocks will be registered via hooks');
   }
 
   /**
-   * 注册自定义积木块
-   * 注意：这些积木块在前端运行时动态注册
+   * 钩子：注册自定义积木块
    */
-  private registerCustomBlocks(): void {
-    // 由于 Blockly 是前端库，这里只是占位
-    // 实际的积木块定义会在前端组件中完成
-    console.log('[BlocklyPlugin] Custom blocks will be registered in frontend');
-  }
+  hooks = {
+    'blockly:register-blocks': (blocks: any[]) => {
+      console.log('[BlocklyPlugin] Registering custom blocks via hook...');
+      
+      const customBlocks = [
+        {
+          type: 'story_show_text',
+          message0: '显示文本 %1',
+          args0: [
+            {
+              type: 'input_value',
+              name: 'TEXT',
+              check: 'String'
+            }
+          ],
+          previousStatement: null,
+          nextStatement: null,
+          colour: 270,
+          tooltip: '在节点中显示文本（调试用）',
+          helpUrl: ''
+        },
+        {
+          type: 'story_random',
+          message0: '随机数 从 %1 到 %2',
+          args0: [
+            {
+              type: 'input_value',
+              name: 'FROM',
+              check: 'Number'
+            },
+            {
+              type: 'input_value',
+              name: 'TO',
+              check: 'Number'
+            }
+          ],
+          output: 'Number',
+          colour: 90,
+          tooltip: '生成指定范围内的随机整数',
+          helpUrl: ''
+        }
+      ];
+      
+      console.log(`[BlocklyPlugin] Providing ${customBlocks.length} blocks`);
+      return [...blocks, ...customBlocks];
+    },
+    
+    'blockly:register-generators': (generators: Record<string, any>) => {
+      console.log('[BlocklyPlugin] Registering code generators via hook...');
+      
+      const customGenerators = {
+        story_show_text: function(block: any, generator: any) {
+          const text = generator.valueToCode(block, 'TEXT', generator.ORDER_NONE) || '""';
+          return `console.log(${text});\n`;
+        },
+        
+        story_random: function(block: any, generator: any) {
+          const from = generator.valueToCode(block, 'FROM', generator.ORDER_NONE) || '1';
+          const to = generator.valueToCode(block, 'TO', generator.ORDER_NONE) || '10';
+          return [`Math.floor(Math.random() * ((${to}) - (${from}) + 1)) + (${from})`, 99];
+        }
+      };
+      
+      console.log(`[BlocklyPlugin] Providing ${Object.keys(customGenerators).length} generators`);
+      return { ...generators, ...customGenerators };
+    }
+  };
 
   /**
    * 获取自定义积木块定义（供前端使用）
