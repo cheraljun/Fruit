@@ -39,13 +39,14 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(4px, 2vw, 10px);
-  padding: 12px 20px;
+  flex-wrap: nowrap;
+  gap: clamp(2px, 2vw, 10px);
+  padding: 12px clamp(5px, 3vw, 20px);
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: clamp(0.7em, 2.5vw, 0.9em);
-  letter-spacing: 0.5px;
+  font-size: clamp(0.5em, 2.5vw, 0.9em);
+  letter-spacing: 0;
   z-index: 10;
   white-space: nowrap;
   overflow: hidden;
@@ -58,7 +59,7 @@ html, body {
   transition: all 0.2s;
   font-weight: 500;
   padding: 4px clamp(4px, 1.5vw, 8px);
-  flex-shrink: 0;
+  flex-shrink: 1;
 }
 
 .vn-command-bar a:hover {
@@ -69,7 +70,7 @@ html, body {
 .vn-command-bar span {
   color: rgba(255, 255, 255, 0.3);
   user-select: none;
-  flex-shrink: 0;
+  flex-shrink: 1;
 }
 
 .vn-background {
@@ -273,13 +274,12 @@ html, body {
 
 @media (max-width: 768px) {
   .vn-command-bar {
-    padding: 10px 12px;
-    gap: clamp(3px, 1.5vw, 6px);
-    letter-spacing: 0;
+    padding: 10px 5px;
+    gap: clamp(2px, 1.5vw, 4px);
   }
   
   .vn-command-bar a {
-    padding: 3px clamp(3px, 1vw, 5px);
+    padding: 2px clamp(2px, 1vw, 4px);
   }
   
   .vn-dialogue-container {
@@ -338,8 +338,12 @@ html, body {
 
 @media (max-width: 480px) {
   .vn-command-bar {
-    padding: 8px 8px;
-    gap: clamp(2px, 1vw, 4px);
+    padding: 8px 3px;
+    gap: clamp(1px, 0.5vw, 2px);
+  }
+  
+  .vn-command-bar a {
+    padding: 2px clamp(2px, 0.5vw, 3px);
   }
   
   .vn-dialogue-container {
@@ -347,7 +351,13 @@ html, body {
   }
   
   .vn-character-images {
-    display: none;
+    margin-bottom: 8px;
+    padding: 0 1%;
+  }
+  
+  .vn-character-image {
+    max-height: 200px;
+    max-width: 100px;
   }
   
   .vn-dialogue-box {
@@ -384,6 +394,22 @@ html, body {
   
   .vn-game-over-hint {
     font-size: 0.85rem;
+  }
+}
+
+/* 超小屏幕优化 - 隐藏分隔符 */
+@media (max-width: 360px) {
+  .vn-command-bar {
+    padding: 6px 2px;
+    gap: 1px;
+  }
+  
+  .vn-command-bar a {
+    padding: 1px 2px;
+  }
+  
+  .vn-command-bar span {
+    display: none;
   }
 }
 

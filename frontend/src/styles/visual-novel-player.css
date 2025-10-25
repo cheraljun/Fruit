@@ -23,6 +23,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: nowrap;
   gap: 10px;
   padding: 12px 20px;
   background: rgba(0, 0, 0, 0.5);
@@ -31,6 +32,8 @@
   font-size: 0.9em;
   letter-spacing: 1px;
   z-index: 10;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .vn-command-bar a {
@@ -40,6 +43,7 @@
   transition: all 0.2s;
   font-weight: 500;
   padding: 4px 8px;
+  flex-shrink: 1;
 }
 
 .vn-command-bar a:hover {
@@ -50,6 +54,7 @@
 .vn-command-bar span {
   color: rgba(255, 255, 255, 0.3);
   user-select: none;
+  flex-shrink: 1;
 }
 
 .vn-background {
@@ -245,6 +250,25 @@
 }
 
 @media (max-width: 768px) {
+  .vn-command-bar {
+    padding: 8px 5px;
+    gap: 4px;
+    font-size: 0.7em;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  
+  .vn-command-bar a {
+    padding: 2px 4px;
+    font-size: 1em;
+    letter-spacing: 0;
+  }
+  
+  .vn-command-bar span {
+    font-size: 0.9em;
+  }
+  
   .vn-dialogue-container {
     left: 3%;
     right: 3%;
@@ -279,6 +303,93 @@
   .vn-choice-button {
     padding: 12px 20px;
     font-size: 0.95rem;
+  }
+}
+
+/* 更小屏幕的额外优化 */
+@media (max-width: 480px) {
+  .vn-command-bar {
+    padding: 6px 2px;
+    gap: 2px;
+    font-size: 0.55em;
+  }
+  
+  .vn-command-bar a {
+    padding: 2px 3px;
+    font-size: 1em;
+    letter-spacing: 0;
+  }
+  
+  .vn-command-bar span {
+    font-size: 0.8em;
+    margin: 0 1px;
+  }
+  
+  .vn-dialogue-container {
+    bottom: 50px;
+  }
+  
+  .vn-character-images {
+    margin-bottom: 8px;
+    padding: 0 1%;
+  }
+  
+  .vn-character-image {
+    max-height: 200px;
+    max-width: 100px;
+  }
+  
+  .vn-dialogue-box {
+    width: 98%;
+    min-height: 100px;
+    max-height: 140px;
+    padding: 12px 16px;
+  }
+  
+  .vn-text {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  
+  .vn-choices {
+    min-width: 90%;
+    max-width: 95%;
+    bottom: 180px;
+    gap: 8px;
+  }
+  
+  .vn-choice-button {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+  
+  .vn-game-over {
+    bottom: 200px;
+  }
+  
+  .vn-game-over-text {
+    font-size: 1.3rem;
+  }
+  
+  .vn-game-over-hint {
+    font-size: 0.85rem;
+  }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 360px) {
+  .vn-command-bar {
+    padding: 5px 1px;
+    gap: 1px;
+    font-size: 0.5em;
+  }
+  
+  .vn-command-bar a {
+    padding: 1px 2px;
+  }
+  
+  .vn-command-bar span {
+    display: none;
   }
 }
 
