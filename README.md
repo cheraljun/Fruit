@@ -34,7 +34,15 @@
 
 ## 如何开始
 
-详见 `如何本地部署.md` 和 `docs/` 文件夹。
+**开发模式**
+- 前端：运行 `dev-start-frontend.cmd`
+- 后端：运行 `dev-start-backend.cmd`
+
+**生产部署**
+- 在线部署：运行 `production-start.cmd`
+- 桌面打包：进入 `packager/` 目录，运行 `npm run build`
+
+详见 `docs/` 文件夹和 `packager/README.md`。
 
 打开编辑器，创建第一个节点，写下"你站在岔路口"，添加"向左"和"向右"。
 

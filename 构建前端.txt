@@ -1,1 +1,0 @@
-cd desktop && cd MoScript && cd shared && npm install && cd .. && cd player-standalone && cd terminal && npm install && cd .. && cd visual-novel && npm install && cd .. && npm run build && cd .. && cd frontend && npm install && npm run dev

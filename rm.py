@@ -26,6 +26,10 @@ DIRS_TO_REMOVE = [
     'frontend/public/templates',
     'node_modules',
     '.cache',
+    # 打包工具
+    'packager/node_modules',
+    'packager/temp',
+    'packager/output',
 ]
 
 # 需要递归删除的文件模式
@@ -114,11 +118,6 @@ def check_env_files() -> None:
 
 
 def show_reinstall_commands() -> None:
-    """显示重新安装命令"""
-    print('重新安装依赖:')
-    print('cd shared && npm install')
-    print('cd backend && npm install')
-    print('cd frontend && npm install')
     backup_paths = list(ROOT.glob('userdata_backup*'))
     if backup_paths:
         latest_backup = max(backup_paths, key=lambda p: p.stat().st_mtime)

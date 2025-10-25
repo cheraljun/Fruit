@@ -27,7 +27,7 @@ const router = express.Router();
 
 // ========== 依赖注入 ==========
 
-const USER_DATA_DIR = 'userdata';
+const USER_DATA_DIR = process.env.USER_DATA_PATH || 'userdata';
 
 const storyRepo = new FileSystemStoryRepository(USER_DATA_DIR);
 const authorRepo = new FileSystemAuthorRepository(USER_DATA_DIR);

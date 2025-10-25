@@ -1,0 +1,14 @@
+{
+  "name": "moscript-packager",
+  "version": "1.0.0",
+  "description": "MoScript 桌面版打包工具",
+  "type": "module",
+  "scripts": {
+    "build": "node build-portable.js"
+  },
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "node-fetch": "^3.3.2"
+  }
+}
+
