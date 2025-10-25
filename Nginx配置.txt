@@ -65,7 +65,7 @@ http {
         listen       80;
         
         # ★★★ MoScript域名 ★★★
-        server_name  MoScript.top;
+        server_name  moscript.top;
         
         # 前端静态文件
         location / {
@@ -124,7 +124,7 @@ http {
 3. 测试配置：nginx -t
 4. 重启Nginx：nginx -s reload
 5. 启动两个程序：
-   - MoScript.top:      MoScript后端运行在 127.0.0.1:3001
+   - moscript.top:      MoScript后端运行在 127.0.0.1:3001
    - localgame.top:     LocalGame运行在 127.0.0.1:8000
 
 
@@ -156,7 +156,7 @@ nginx -s reload
 
 4. 访问
 -----------------------------------------------
-http://MoScript.top  （自动加载前端，API请求转发到3001）
+http://moscript.top  （自动加载前端，API请求转发到3001）
 
 
 最后更新：2025-10-10

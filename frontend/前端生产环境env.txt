@@ -1,1 +1,1 @@
-VITE_API_BASE_URL=http://MoScript.top/api
+VITE_API_BASE_URL=http://moscript.top/api

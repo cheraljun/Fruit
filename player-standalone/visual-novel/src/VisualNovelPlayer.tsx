@@ -81,7 +81,7 @@ function VisualNovelPlayer({ story }: Props): JSX.Element {
         setCurrentChoices(choices);
       },
       onExit: () => {
-        console.log('感谢游玩！');
+        window.location.href = 'http://moscript.top';
       }
     });
     
@@ -141,7 +141,7 @@ function VisualNovelPlayer({ story }: Props): JSX.Element {
     }
 
     if (cmd === 'exit') {
-      console.log('感谢游玩！');
+      window.location.href = 'http://moscript.top';
       return;
     }
   }

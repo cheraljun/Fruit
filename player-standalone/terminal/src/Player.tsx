@@ -65,7 +65,7 @@ function Player(): JSX.Element {
         onMessagesChange: (msgs) => setMessages([...msgs]),
         onChoicesChange: (choices) => setCurrentChoices(choices),
         onExit: () => {
-          setMessages(prev => [...prev, { text: '感谢游玩！', type: 'sys' }]);
+          window.location.href = 'http://moscript.top';
         }
       });
       
