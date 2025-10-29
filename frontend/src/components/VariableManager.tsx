@@ -18,7 +18,8 @@ function VariableManager({ variables, onVariablesChange }: VariableManagerProps)
     id: '',
     label: '',
     type: 'number',
-    defaultValue: 0
+    defaultValue: 0,
+    displayInPlayer: false
   });
 
   const userVars = variables;
@@ -46,7 +47,8 @@ function VariableManager({ variables, onVariablesChange }: VariableManagerProps)
       type: formData.type || 'number',
       defaultValue: formData.defaultValue ?? (formData.type === 'number' ? 0 : formData.type === 'boolean' ? false : ''),
       description: formData.description,
-      source: 'user'
+      source: 'user',
+      displayInPlayer: formData.displayInPlayer ?? false
     };
 
     let updatedVars: VariableDefinition[];
@@ -71,7 +73,8 @@ function VariableManager({ variables, onVariablesChange }: VariableManagerProps)
       id: '',
       label: '',
       type: 'number',
-      defaultValue: 0
+      defaultValue: 0,
+      displayInPlayer: false
     });
   };
 
@@ -92,7 +95,8 @@ function VariableManager({ variables, onVariablesChange }: VariableManagerProps)
       id: '',
       label: '',
       type: 'number',
-      defaultValue: 0
+      defaultValue: 0,
+      displayInPlayer: false
     });
   };
 
@@ -289,8 +293,31 @@ function VariableManager({ variables, onVariablesChange }: VariableManagerProps)
                     display: 'flex', 
                     gap: '8px',
                     marginTop: '4px',
-                    justifyContent: 'flex-start'
+                    justifyContent: 'flex-start',
+                    alignItems: 'center'
                   }}>
+                    <label style={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      gap: '4px',
+                      fontSize: '0.875rem',
+                      cursor: 'pointer'
+                    }}>
+                      <input
+                        type="checkbox"
+                        checked={variable.displayInPlayer ?? false}
+                        onChange={(e) => {
+                          const updatedVars = userVars.map(v => 
+                            v.id === variable.id 
+                              ? { ...v, displayInPlayer: e.target.checked }
+                              : v
+                          );
+                          onVariablesChange(updatedVars);
+                        }}
+                        style={{ cursor: 'pointer' }}
+                      />
+                      <span>播放器显示</span>
+                    </label>
                     <button
                       onClick={() => handleEdit(variable)}
                       className="btn-variable-edit"

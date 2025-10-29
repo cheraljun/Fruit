@@ -112,6 +112,7 @@ export interface VariableDefinition {
   description?: string;
   source?: 'user' | 'plugin';
   pluginId?: string;
+  displayInPlayer?: boolean;
 }
 
 // ============= 完整故事结构 =============

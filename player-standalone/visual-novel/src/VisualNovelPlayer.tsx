@@ -46,6 +46,8 @@ function VisualNovelPlayer({ story }: Props): JSX.Element {
   const [visitedScenes, setVisitedScenes] = useState<VisitedScene[]>([]);
   const [currentNodeId, setCurrentNodeId] = useState<string>('');
   const [typewriterSpeed, setTypewriterSpeed] = useState<number>(0);
+  const [showVariables, setShowVariables] = useState<boolean>(false);
+  const [displayVariables, setDisplayVariables] = useState<Array<{id: string, label: string, value: any}>>([]);
   const playerRef = useRef<PlayerCore | null>(null);
   const dialogueBoxRef = useRef<HTMLDivElement>(null);
 
@@ -101,6 +103,34 @@ function VisualNovelPlayer({ story }: Props): JSX.Element {
     dialogueBox.addEventListener('click', handleClick);
     return () => dialogueBox.removeEventListener('click', handleClick);
   }, [currentText]);
+
+  function updateDisplayVariables(): void {
+    if (!playerRef.current) return;
+    
+    const varsToDisplay = story.variables?.filter(v => v.displayInPlayer) || [];
+    if (varsToDisplay.length === 0) {
+      setDisplayVariables([]);
+      return;
+    }
+    
+    const pluginSystem = playerRef.current.getPluginSystem();
+    const runtimePluginEntry = pluginSystem.getPlugin('basicmod.runtime');
+    
+    if (!runtimePluginEntry || !runtimePluginEntry.enabled) {
+      setDisplayVariables([]);
+      return;
+    }
+    
+    const runtimePlugin = runtimePluginEntry.plugin as any;
+    
+    const displayVars = varsToDisplay.map(varDef => ({
+      id: varDef.id,
+      label: varDef.label,
+      value: runtimePlugin.get(varDef.id)
+    }));
+    
+    setDisplayVariables(displayVars);
+  }
 
   async function startStory(): Promise<void> {
     const player = new PlayerCore({
@@ -163,6 +193,9 @@ function VisualNovelPlayer({ story }: Props): JSX.Element {
         }
         
         setGameEnded(node.type === 'ending');
+        
+        // 更新属性面板显示的变量
+        updateDisplayVariables();
       },
       onChoicesChange: (choices) => {
         setCurrentChoices(choices);
@@ -268,6 +301,28 @@ function VisualNovelPlayer({ story }: Props): JSX.Element {
                 >
                   {scene.sceneName}
                 </a>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+      
+      {/* 属性面板 */}
+      {displayVariables.length > 0 && (
+        <div className="vn-variables">
+          <a 
+            className="vn-variables-toggle"
+            onClick={() => setShowVariables(!showVariables)}
+          >
+            属性
+          </a>
+          
+          {showVariables && (
+            <div className="vn-variables-list">
+              {displayVariables.map((variable) => (
+                <div key={variable.id} className="vn-variable-item">
+                  {variable.label}：{String(variable.value)}
+                </div>
               ))}
             </div>
           )}
