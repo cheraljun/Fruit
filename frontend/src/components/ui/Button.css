@@ -37,7 +37,6 @@
 }
 
 .btn-primary:hover:not(:disabled) {
-  transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(125, 211, 252, 0.4);
 }
 
@@ -73,7 +72,6 @@
 }
 
 .btn-success:hover:not(:disabled) {
-  transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(52, 211, 153, 0.4);
 }
 
@@ -99,9 +97,5 @@
 .btn-loading {
   opacity: 0.7;
   cursor: wait;
-}
-
-.btn:active:not(:disabled) {
-  transform: scale(0.98);
 }
 

@@ -131,13 +131,6 @@ class NotificationService {
       <div style="font-size: 12px; text-align: center; opacity: 0.8;">点击复制分享链接</div>
     `;
 
-    // 鼠标悬停效果
-    notification.addEventListener('mouseenter', () => {
-      notification.style.transform = 'scale(1.02)';
-    });
-    notification.addEventListener('mouseleave', () => {
-      notification.style.transform = 'scale(1)';
-    });
 
     // 点击复制
     notification.addEventListener('click', () => {

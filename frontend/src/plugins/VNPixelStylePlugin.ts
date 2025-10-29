@@ -80,7 +80,6 @@ export class VNPixelStylePlugin extends PluginBase {
         color: #000000 !important;
         border-color: #00ff00 !important;
         box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.7) !important;
-        transform: translate(-2px, -2px) !important;
       }
       
       .vn-character-image {
@@ -161,7 +160,6 @@ export class VNPixelStylePlugin extends PluginBase {
   color: #000000;
   border-color: #00ff00;
   box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.7);
-  transform: translate(-2px, -2px);
 }
 
 .vn-character-image {

@@ -42,7 +42,6 @@
 
 .guest-login-btn:hover {
   background: #fef3c7;
-  transform: translateY(-1px);
 }
 
 /* 侧边栏 */
@@ -107,7 +106,6 @@
 .btn-back:hover {
   background: rgba(255, 255, 255, 0.9);
   border-color: #FF6D5A;
-  transform: translateX(-2px);
 }
 
 .section {
@@ -191,7 +189,6 @@
 
 .btn-primary:hover:not(:disabled) {
   box-shadow: 0 4px 12px rgba(255, 109, 90, 0.4);
-  transform: translateY(-2px);
 }
 
 .btn-secondary, .btn-success, .btn-danger, .btn-info {
@@ -369,7 +366,6 @@
 }
 
 .node-tag:hover {
-  transform: translateY(-1px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 

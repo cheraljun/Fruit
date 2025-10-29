@@ -4,7 +4,7 @@
  */
 
 import { RuntimePlugin, BlocklyPlugin } from './basicmod/index.js';
-import { MarkdownPlugin, ValidatorPlugin, AnalyzerPlugin, HierarchicalLayoutPlugin, RadialLayoutPlugin, ChoiceEmbeddingPlugin } from './tools/index.js';
+import { MarkdownPlugin, ValidatorPlugin, AnalyzerPlugin, HierarchicalLayoutPlugin, RadialLayoutPlugin, ChoiceEmbeddingPlugin, ExcelExporterPlugin } from './tools/index.js';
 import { TimeSystemPlugin, BackroomsPlugin } from './gamemods/index.js';
 
 export { 
@@ -16,6 +16,7 @@ export {
   HierarchicalLayoutPlugin,
   RadialLayoutPlugin,
   ChoiceEmbeddingPlugin,
+  ExcelExporterPlugin,
   TimeSystemPlugin,
   BackroomsPlugin
 };
@@ -54,6 +55,7 @@ export function createBuiltinPlugins() {
     new HierarchicalLayoutPlugin(),
     new RadialLayoutPlugin(),
     new ChoiceEmbeddingPlugin(),
+    new ExcelExporterPlugin(),
     new TimeSystemPlugin(),
     new BackroomsPlugin()
   ];

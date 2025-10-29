@@ -79,7 +79,6 @@ export class VNModernStylePlugin extends PluginBase {
           rgba(138, 43, 226, 0.4) 100%) !important;
         border-color: rgba(0, 212, 255, 0.8) !important;
         box-shadow: 0 6px 25px rgba(0, 212, 255, 0.5) !important;
-        transform: translateY(-3px) !important;
       }
       
       .vn-character-image {
@@ -138,7 +137,6 @@ export class VNModernStylePlugin extends PluginBase {
     rgba(138, 43, 226, 0.4) 100%);
   border-color: rgba(0, 212, 255, 0.8);
   box-shadow: 0 6px 25px rgba(0, 212, 255, 0.5);
-  transform: translateY(-3px);
 }
 
 .vn-character-image {

@@ -9,6 +9,7 @@ import { AnalyzerPlugin } from './AnalyzerPlugin.js';
 import { HierarchicalLayoutPlugin } from './layouts/HierarchicalLayoutPlugin.js';
 import { RadialLayoutPlugin } from './layouts/RadialLayoutPlugin.js';
 import { ChoiceEmbeddingPlugin } from './ChoiceEmbeddingPlugin.js';
+import { ExcelExporterPlugin } from './ExcelExporterPlugin.js';
 
 export {
   MarkdownPlugin,
@@ -16,7 +17,8 @@ export {
   AnalyzerPlugin,
   HierarchicalLayoutPlugin,
   RadialLayoutPlugin,
-  ChoiceEmbeddingPlugin
+  ChoiceEmbeddingPlugin,
+  ExcelExporterPlugin
 };
 
 export * from './layouts/index.js';

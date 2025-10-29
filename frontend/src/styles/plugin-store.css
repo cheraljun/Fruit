@@ -75,7 +75,6 @@
 .filter-btn:hover {
   background: rgba(249, 250, 251, 0.8);
   border-color: #FF6D5A;
-  transform: translateY(-2px);
 }
 
 .filter-btn.active {
@@ -135,7 +134,6 @@
 }
 
 .plugin-card:hover {
-  transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(255, 109, 90, 0.15);
   border-color: #FF6D5A;
 }

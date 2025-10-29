@@ -17,7 +17,8 @@
     "react-dom": "^18.2.0",
     "react-draggable": "^4.4.6",
     "react-router-dom": "^6.20.0",
-    "reactflow": "^11.10.4"
+    "reactflow": "^11.10.4",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",

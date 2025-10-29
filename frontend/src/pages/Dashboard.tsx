@@ -391,6 +391,87 @@ function Dashboard(): JSX.Element {
     input.click()
   }
 
+  async function handleImportExcel(): Promise<void> {
+    const registered = pluginSystem.getPlugin('tool.excel-exporter')
+    if (!registered || !registered.enabled) {
+      notification.error('Excel插件未加载')
+      return
+    }
+    
+    const excelPlugin = registered.plugin as any
+
+    const input = document.createElement('input')
+    input.type = 'file'
+    input.accept = '.xlsx,.xls'
+    
+    input.onchange = async (e) => {
+      const target = e.target as HTMLInputElement
+      const file = target.files?.[0]
+      if (!file) return
+      
+      try {
+        notification.info('正在解析Excel文件...')
+        const story = await excelPlugin.importFromExcel(file)
+        
+        // 创建新故事（重新生成ID和时间）
+        const newStory: Story = {
+          ...story,
+          id: `story_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        }
+        
+        if (username) {
+          await api.drafts.save(newStory)
+          notification.success('Excel已导入为故事')
+          await loadStories()
+        } else {
+          guestStorage.save(newStory)
+          notification.success('Excel已导入（游客模式）')
+          loadGuestStories()
+        }
+      } catch (error) {
+        console.error('导入Excel失败:', error)
+        notification.error(error instanceof Error ? error.message : '导入Excel失败')
+      }
+    }
+    
+    input.click()
+  }
+
+  async function handleExportExcel(id: string, e: React.MouseEvent): Promise<void> {
+    e.stopPropagation()
+
+    const registered = pluginSystem.getPlugin('tool.excel-exporter')
+    if (!registered || !registered.enabled) {
+      notification.error('Excel插件未加载')
+      return
+    }
+    
+    const excelPlugin = registered.plugin as any
+
+    try {
+      let story: Story | null = null
+      
+      if (username) {
+        story = await api.drafts.getById(id)
+      } else {
+        story = guestStorage.getById(id)
+      }
+      
+      if (!story) {
+        notification.error('故事不存在')
+        return
+      }
+      
+      excelPlugin.exportToExcel(story)
+      notification.success('Excel已导出')
+    } catch (error) {
+      console.error('导出Excel失败:', error)
+      notification.error('导出Excel失败')
+    }
+  }
+
   async function handlePublish(id: string, e: React.MouseEvent): Promise<void> {
     e.stopPropagation()
     
@@ -494,7 +575,10 @@ function Dashboard(): JSX.Element {
           + 创建新作品
         </button>
         <button className="btn-secondary" onClick={handleImport}>
-          导入作品
+          导入JSON
+        </button>
+        <button className="btn-secondary" onClick={handleImportExcel}>
+          导入Excel
         </button>
         <button className="btn-secondary" onClick={() => navigate('/plugins')}>
           插件商店
@@ -538,14 +622,21 @@ function Dashboard(): JSX.Element {
                   onClick={(e) => handleExport(story.id, e)}
                   title="导出JSON"
                 >
-                  导出JSON
+                  JSON
+                </button>
+                <button
+                  className="btn-icon"
+                  onClick={(e) => handleExportExcel(story.id, e)}
+                  title="导出Excel"
+                >
+                  Excel
                 </button>
                 <button
                   className="btn-icon"
                   onClick={(e) => handleExportHTML(story.id, story.meta.displayMode === 'visual-novel' ? 'visual-novel' : 'terminal', e)}
                   title="导出为HTML"
                 >
-                  导出HTML
+                  HTML
                 </button>
                 <button
                   className={`btn-icon btn-danger ${deleteConfirmId === story.id ? 'btn-danger-confirm' : ''}`}
