@@ -1,0 +1,195 @@
+/**
+ * 播放器外层布局（全屏自适应）
+ */
+
+.player {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  background: #000;
+}
+
+.player.loading {
+  font-size: 18px;
+  color: #0f0;
+  align-items: center;
+  justify-content: center;
+}
+
+.player-container {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/**
+ * 终端内容区域（纯终端风格）
+ */
+
+.terminal-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  overflow-y: auto;
+  font-family: 'DejaVu Sans Mono', Consolas, Inconsolata, 'Lucida Console', monospace;
+  font-size: 0.9em;
+  line-height: 1.4em;
+  color: #ccc;
+  
+  /* 隐藏滚动条但保持滚动功能 */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.terminal-content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+/* 消息区域 */
+.terminal-messages {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+/* 单条消息 */
+.terminal-message {
+  margin: 0.3rem 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* 系统消息 (绿色) */
+.terminal-message.sys { 
+  color: #0f0;
+  font-size: 0.95em;
+}
+
+/* 输入回显 (深灰) */
+.terminal-message.inp { 
+  color: #555;
+  font-size: 0.95em;
+}
+
+/* 服务器输出 (浅灰) - 小说正文 */
+.terminal-message.out {
+  color: #aaa;
+  white-space: pre-wrap;
+  font-size: 1.15em;
+  line-height: 1.7;
+}
+
+/* 错误消息 (红色) */
+.terminal-message.err { 
+  color: #f00;
+}
+
+/* 提示符/选项 (白色) */
+.terminal-message.prompt {
+  color: #fff;
+}
+
+/* 输入区域 - 在文档流中 */
+.terminal-input-area {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #222;
+}
+
+/* 命令提示符 */
+.terminal-prompt {
+  color: #fff;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  user-select: none;
+}
+
+/* 输入框 */
+.terminal-input {
+  flex: 1;
+  background: #000;
+  color: #fff;
+  font-size: 1rem;
+  font-family: 'DejaVu Sans Mono', Consolas, Inconsolata, 'Lucida Console', monospace;
+  border: none;
+  outline: none;
+  padding: 0;
+}
+
+.terminal-input:focus {
+  outline: none;
+}
+
+.terminal-input::placeholder {
+  color: #555;
+  font-style: normal;
+}
+
+/* 选项链接 */
+.choice-links {
+  margin: 0.3rem 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.choice-link {
+  flex: 1;
+  text-align: center;
+  color: #666;
+  font-size: 0.95em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.choice-link:hover {
+  color: #5bc0de;
+  text-shadow: 0 0 8px rgba(91, 192, 222, 0.6);
+}
+
+/* Markdown渲染样式 */
+.terminal-message.out strong {
+  color: #fff;
+  font-weight: bold;
+}
+
+.terminal-message.out em {
+  color: #bbb;
+  font-style: italic;
+}
+
+.terminal-message.out code {
+  background: #1a1a1a;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: monospace;
+  color: #0f0;
+}
+
+/* 确保HTML渲染的内容继承终端样式 */
+.terminal-message.out span {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* 内嵌选项超链接 */
+.terminal-message.out .choice-embed-link {
+  color: #5bc0de;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: all 0.2s;
+}
+
+.terminal-message.out .choice-embed-link:hover {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(91, 192, 222, 0.8);
+  text-decoration: none;
+}
+

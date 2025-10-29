@@ -1,0 +1,30 @@
+{
+  "name": "interactive-fiction-frontend",
+  "version": "1.0.0",
+  "description": "前端 - 互动小说编辑器",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@monaco-editor/react": "^4.6.0",
+    "blockly": "^11.1.1",
+    "marked": "^11.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-draggable": "^4.4.6",
+    "react-router-dom": "^6.20.0",
+    "reactflow": "^11.10.4"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.56",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react": "^4.2.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.0"
+  }
+}
+

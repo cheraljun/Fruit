@@ -1,0 +1,178 @@
+/**
+ * 全局样式
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 
+    'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(180deg, #fafafa 0%, #f5f5f5 100%);
+  min-height: 100vh;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* 通用按钮样式 */
+.btn {
+  width: 100%;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #FF6D5A 0%, #FF9472 100%);
+  color: white;
+}
+
+.btn-danger, .btn-danger-confirm, .btn-success, .btn-secondary, .btn-info {
+  background: var(--theme-background-secondary);
+  color: var(--theme-text-primary);
+  border: 1px solid var(--theme-border);
+}
+
+.btn-danger:hover:not(:disabled),
+.btn-danger-confirm:hover:not(:disabled),
+.btn-success:hover:not(:disabled),
+.btn-secondary:hover:not(:disabled),
+.btn-info:hover:not(:disabled) {
+  background: var(--theme-hover);
+  border-color: var(--theme-border-light);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: #FF6D5A;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 4px 8px;
+}
+
+.btn-link:hover {
+  color: #E85A48;
+}
+
+/* 表单组件 */
+.form-group {
+  margin-bottom: 12px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #404040;
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d4d4d4;
+  border-radius: 8px;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #FF6D5A;
+  box-shadow: 0 0 0 3px rgba(255, 109, 90, 0.1);
+}
+
+/* 隐藏滚动条但保留滚动功能 */
+
+/* WebKit 浏览器 (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: none !important;
+}
+
+/* IE 和 Edge Legacy */
+* {
+  -ms-overflow-style: none !important;
+}
+
+/* Blockly 特殊处理 */
+.blocklyScrollbarVertical,
+.blocklyScrollbarHorizontal {
+  display: none !important;
+}
+
+.blocklyMainBackground {
+  overflow: hidden !important;
+}
+
+.blocklySvg {
+  overflow: visible !important;
+}
+
+/* Blockly 下拉菜单和工具提示 - 确保显示在最上层 */
+.blocklyWidgetDiv,
+.blocklyDropDownDiv,
+.blocklyTooltipDiv {
+  z-index: 10000 !important;
+}
+
+/* Blockly 下拉菜单内容 */
+.blocklyDropDownDiv .goog-menu {
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  overflow: auto;
+  max-height: 300px;
+}
+
+svg::-webkit-scrollbar {
+  display: none !important;
+}
+
