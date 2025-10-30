@@ -113,6 +113,7 @@ export interface VariableDefinition {
   source?: 'user' | 'plugin';
   pluginId?: string;
   displayInPlayer?: boolean;
+  displayOrder?: number;
 }
 
 // ============= 完整故事结构 =============

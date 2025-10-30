@@ -126,8 +126,21 @@ function VisualNovelPlayer({ story }: Props): JSX.Element {
     const displayVars = varsToDisplay.map(varDef => ({
       id: varDef.id,
       label: varDef.label,
-      value: runtimePlugin.get(varDef.id)
+      value: runtimePlugin.get(varDef.id),
+      order: varDef.displayOrder
     }));
+    
+    displayVars.sort((a, b) => {
+      const hasOrderA = a.order !== undefined && a.order !== null;
+      const hasOrderB = b.order !== undefined && b.order !== null;
+      
+      if (hasOrderA && hasOrderB) {
+        return a.order - b.order;
+      }
+      if (hasOrderA) return -1;
+      if (hasOrderB) return 1;
+      return 0;
+    });
     
     setDisplayVariables(displayVars);
   }

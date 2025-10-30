@@ -19,7 +19,8 @@ function VariableManager({ variables, onVariablesChange }: VariableManagerProps)
     label: '',
     type: 'number',
     defaultValue: 0,
-    displayInPlayer: false
+    displayInPlayer: false,
+    displayOrder: undefined
   });
 
   const userVars = variables;
@@ -48,7 +49,8 @@ function VariableManager({ variables, onVariablesChange }: VariableManagerProps)
       defaultValue: formData.defaultValue ?? (formData.type === 'number' ? 0 : formData.type === 'boolean' ? false : ''),
       description: formData.description,
       source: 'user',
-      displayInPlayer: formData.displayInPlayer ?? false
+      displayInPlayer: formData.displayInPlayer ?? false,
+      displayOrder: formData.displayOrder
     };
 
     let updatedVars: VariableDefinition[];
@@ -74,7 +76,8 @@ function VariableManager({ variables, onVariablesChange }: VariableManagerProps)
       label: '',
       type: 'number',
       defaultValue: 0,
-      displayInPlayer: false
+      displayInPlayer: false,
+      displayOrder: undefined
     });
   };
 
@@ -96,7 +99,8 @@ function VariableManager({ variables, onVariablesChange }: VariableManagerProps)
       label: '',
       type: 'number',
       defaultValue: 0,
-      displayInPlayer: false
+      displayInPlayer: false,
+      displayOrder: undefined
     });
   };
 
@@ -284,40 +288,79 @@ function VariableManager({ variables, onVariablesChange }: VariableManagerProps)
                     )}
                     <div className="variable-item-usage" style={{ 
                       wordWrap: 'break-word',
-                      overflowWrap: 'break-word'
+                      overflowWrap: 'break-word',
+                      marginBottom: '8px'
                     }}>
                       在文本中使用: <code>{`{{$vars.${variable.id}}}`}</code>
+                    </div>
+                    <div style={{ 
+                      display: 'flex', 
+                      gap: '12px',
+                      alignItems: 'center',
+                      flexWrap: 'wrap',
+                      marginBottom: '8px'
+                    }}>
+                      <label style={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        gap: '4px',
+                        fontSize: '0.875rem',
+                        cursor: 'pointer',
+                        whiteSpace: 'nowrap'
+                      }}>
+                        <input
+                          type="checkbox"
+                          checked={variable.displayInPlayer ?? false}
+                          onChange={(e) => {
+                            const updatedVars = userVars.map(v => 
+                              v.id === variable.id 
+                                ? { ...v, displayInPlayer: e.target.checked }
+                                : v
+                            );
+                            onVariablesChange(updatedVars);
+                          }}
+                          style={{ cursor: 'pointer' }}
+                        />
+                        <span>播放器显示</span>
+                      </label>
+                      <label style={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        gap: '4px',
+                        fontSize: '0.875rem',
+                        whiteSpace: 'nowrap'
+                      }}>
+                        <span>顺序:</span>
+                        <input
+                          type="number"
+                          value={variable.displayOrder ?? ''}
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            const updatedVars = userVars.map(v => 
+                              v.id === variable.id 
+                                ? { ...v, displayOrder: value === '' ? undefined : Number(value) }
+                                : v
+                            );
+                            onVariablesChange(updatedVars);
+                          }}
+                          placeholder="不填"
+                          style={{ 
+                            width: '70px',
+                            padding: '4px 6px',
+                            fontSize: '0.875rem',
+                            border: '1px solid var(--border-color, #ddd)',
+                            borderRadius: '4px'
+                          }}
+                        />
+                      </label>
                     </div>
                   </div>
                   <div className="variable-item-actions" style={{ 
                     display: 'flex', 
                     gap: '8px',
-                    marginTop: '4px',
                     justifyContent: 'flex-start',
                     alignItems: 'center'
                   }}>
-                    <label style={{ 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      gap: '4px',
-                      fontSize: '0.875rem',
-                      cursor: 'pointer'
-                    }}>
-                      <input
-                        type="checkbox"
-                        checked={variable.displayInPlayer ?? false}
-                        onChange={(e) => {
-                          const updatedVars = userVars.map(v => 
-                            v.id === variable.id 
-                              ? { ...v, displayInPlayer: e.target.checked }
-                              : v
-                          );
-                          onVariablesChange(updatedVars);
-                        }}
-                        style={{ cursor: 'pointer' }}
-                      />
-                      <span>播放器显示</span>
-                    </label>
                     <button
                       onClick={() => handleEdit(variable)}
                       className="btn-variable-edit"
