@@ -60,17 +60,17 @@ http {
     # ⭐⭐⭐ 重要：文件上传大小无限制（支持GIF等大文件）⭐⭐⭐
     client_max_body_size 0;
 
-    # ===== 第一个网站（MoScript - 前后端分离）=====
+    # ===== 第一个网站（mo - 前后端分离）=====
     server {
         listen       80;
         
-        # ★★★ MoScript域名 ★★★
+        # ★★★ mo域名 ★★★
         server_name  moscript.top;
         
         # 前端静态文件
         location / {
             # ★★★ 前端构建产物目录 ★★★
-            root C:/Users/Administrator/Desktop/MoScript/frontend/dist;
+            root C:/Users/Administrator/Desktop/mo/frontend/dist;
             try_files $uri $uri/ /index.html;
             index index.html;
         }
@@ -139,15 +139,15 @@ http {
 3. 测试配置：nginx -t
 4. 重启Nginx：nginx -s reload
 5. 启动两个程序：
-   - moscript.top:      MoScript后端运行在 127.0.0.1:3001
+   - moscript.top:      mo后端运行在 127.0.0.1:3001
    - localgame.top:     LocalGame运行在 127.0.0.1:8000
 
 
-MoScript 部署步骤
+mo 部署步骤
 
 1. 构建前端
 -----------------------------------------------
-cd C:\Users\Administrator\Desktop\MoScript\frontend
+cd C:\Users\Administrator\Desktop\mo\frontend
 npm run build
 
 （会生成 dist/ 目录）
@@ -155,7 +155,7 @@ npm run build
 
 2. 启动后端
 -----------------------------------------------
-cd C:\Users\Administrator\Desktop\MoScript\backend
+cd C:\Users\Administrator\Desktop\mo\backend
 npm run build
 npm start
 

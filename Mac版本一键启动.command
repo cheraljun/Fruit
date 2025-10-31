@@ -1,6 +1,6 @@
 #!/bin/bash
 # 本文档由小乙老师编写
-# MoScript 互动小说编辑器 - Mac版启动脚本
+# mo 互动小说编辑器 - Mac版启动脚本
 # 功能：
 # 1. 检测端口占用
 # 2. 设置环境变量
@@ -79,7 +79,7 @@ check_port() {
         print_message $RED "错误: 端口 $PORT 已被占用！"
         print_message $YELLOW ""
         print_message $YELLOW "可能的原因："
-        print_message $YELLOW "  1. MoScript 已经在运行"
+        print_message $YELLOW "  1. mo 已经在运行"
         print_message $YELLOW "  2. 其他程序占用了该端口"
         print_message $YELLOW ""
         print_message $YELLOW "解决方法："
@@ -168,7 +168,7 @@ trap cleanup SIGINT SIGTERM
 main() {
     clear
     print_message $BLUE ""
-    print_message $BLUE "MoScript 互动小说编辑器 - 桌面版"
+    print_message $BLUE "mo 互动小说编辑器 - 桌面版"
     print_message $BLUE ""
     
     # 1. 检查文件
