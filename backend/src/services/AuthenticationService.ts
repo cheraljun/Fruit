@@ -171,8 +171,8 @@ export class AuthenticationService {
     }
 
     // 长度限制
-    if (username.length < 3 || username.length > 32) {
-      throw new ValidationError('用户名长度必须在3-32个字符之间');
+    if (username.length < 1 || username.length > 32) {
+      throw new ValidationError('用户名长度必须在1-32个字符之间');
     }
   }
 

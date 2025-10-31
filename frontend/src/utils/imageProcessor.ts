@@ -20,24 +20,16 @@ export interface ImageProcessOptions {
 }
 
 const DEFAULT_OPTIONS: ImageProcessOptions = {
-  maxSizeBytes: 10 * 1024 * 1024, // 10MB
-  quality: 0.6, // 降低质量以减少文件大小
-  maxWidth: 800,  // 降低最大宽度
-  maxHeight: 600  // 降低最大高度
+  maxSizeBytes: Infinity, // 不限制大小
+  quality: 0.6,
+  maxWidth: 800,
+  maxHeight: 600
 };
 
 /**
  * 验证文件类型
  */
 export function validateImageFile(file: File): { valid: boolean; error?: string } {
-  // 检查文件大小
-  if (file.size > DEFAULT_OPTIONS.maxSizeBytes) {
-    return {
-      valid: false,
-      error: `文件大小超过限制（${Math.round(DEFAULT_OPTIONS.maxSizeBytes / 1024 / 1024)}MB）`
-    };
-  }
-
   // 检查文件类型
   const supportedTypes = [
     'image/jpeg',

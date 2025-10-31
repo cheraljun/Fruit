@@ -14,6 +14,7 @@ interface VariableManagerProps {
 function VariableManager({ variables, onVariablesChange }: VariableManagerProps): JSX.Element {
   const [isAdding, setIsAdding] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
   const [formData, setFormData] = useState<Partial<VariableDefinition>>({
     id: '',
     label: '',
@@ -24,6 +25,12 @@ function VariableManager({ variables, onVariablesChange }: VariableManagerProps)
   });
 
   const userVars = variables;
+  
+  const filteredVars = userVars.filter(v =>
+    v.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    v.label.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (v.description && v.description.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
 
   const handleEdit = (variable: VariableDefinition) => {
     setIsAdding(false);
@@ -244,7 +251,30 @@ function VariableManager({ variables, onVariablesChange }: VariableManagerProps)
             <h4 className="variable-category-title">
               用户定义的变量
             </h4>
-            {userVars.map((variable) => (
+            {userVars.length > 3 && !isAdding && !editingId && (
+              <input
+                type="text"
+                placeholder="搜索变量..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '8px 12px',
+                  marginBottom: '12px',
+                  fontSize: '0.875rem',
+                  border: '1px solid #d1d5db',
+                  borderRadius: '6px',
+                  outline: 'none'
+                }}
+                onFocus={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--theme-brand-primary, #FF6D5A)';
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.borderColor = '#d1d5db';
+                }}
+              />
+            )}
+            {filteredVars.map((variable) => (
               <div key={variable.id} className="variable-item">
                 <div className="variable-item-header" style={{ 
                   display: 'flex', 
@@ -378,6 +408,16 @@ function VariableManager({ variables, onVariablesChange }: VariableManagerProps)
                 </div>
               </div>
             ))}
+            {filteredVars.length === 0 && userVars.length > 0 && searchTerm && (
+              <div style={{
+                padding: '16px',
+                textAlign: 'center',
+                color: '#6b7280',
+                fontSize: '0.875rem'
+              }}>
+                未找到匹配的变量
+              </div>
+            )}
           </div>
         )}
 

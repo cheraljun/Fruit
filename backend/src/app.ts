@@ -17,8 +17,8 @@ const app = express();
 
 // 中间件
 app.use(cors(config.cors));
-app.use(express.json({ limit: '50mb' })); // 增加请求体大小限制支持图片数据
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
+app.use(express.json({ limit: '500mb' })); // 不限制图片大小
+app.use(express.urlencoded({ limit: '500mb', extended: true }));
 
 // 健康检查（优先级最高）
 app.get('/health', (_req, res) => {

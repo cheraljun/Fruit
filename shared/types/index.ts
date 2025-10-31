@@ -21,6 +21,16 @@ export interface Choice {
   pluginData?: Record<string, any>;
 }
 
+// ============= 角色类型 =============
+
+export interface Character {
+  id: string;
+  name: string;
+  nameColor?: string;
+  description?: string;
+  avatar?: NodeImage;  // 角色头像（小图标，用于对话框）
+}
+
 // ============= 节点类型 =============
 
 export type NodeType = 'start' | 'normal' | 'ending';
@@ -100,6 +110,7 @@ export interface StoryMeta {
   start_node: number;
   displayMode?: 'terminal' | 'visual-novel';  // 播放器显示模式
   stylePluginId?: string;  // 当前使用的样式插件ID
+  characters?: Character[];  // 角色列表
 }
 
 // ============= 变量定义类型 =============

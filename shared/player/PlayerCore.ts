@@ -31,6 +31,7 @@ export class PlayerCore {
   private saveKey: string = '';
   private config: PlayerConfig;
   private pluginsInitialized: boolean = false;
+  private currentStory: Story | null = null;
 
   constructor(config: PlayerConfig = {}) {
     this.config = {
@@ -101,6 +102,9 @@ export class PlayerCore {
     if (!Array.isArray(story.variables)) {
       story.variables = [];
     }
+    
+    // 保存完整的story对象，供后续使用
+    this.currentStory = story;
     
     // 初始化全局变量（根据 story.variables 定义）
     if (story.variables.length > 0) {
@@ -181,7 +185,8 @@ export class PlayerCore {
     const rendered = this.pluginSystem.trigger('content:render', {
       text: node.text,
       nodeId: node.id,
-      availableChoices: node.choices  // 传入已过滤的可用选项
+      availableChoices: node.choices,  // 传入已过滤的可用选项
+      story: this.currentStory  // 动态传入完整的story对象
     });
     
     const htmlContent = rendered.renderedHTML || node.text;

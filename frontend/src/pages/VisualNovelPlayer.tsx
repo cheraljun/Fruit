@@ -231,6 +231,10 @@ function VisualNovelPlayer({ story }: Props): JSX.Element {
     });
     
     playerRef.current = player;
+    
+    // 添加baseURL供MarkdownPlugin使用
+    (story as any)._baseURL = config.api.baseURL.replace('/api', '');
+    
     await player.start(story);
   }
 

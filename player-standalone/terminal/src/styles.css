@@ -96,7 +96,7 @@ html, body {
 .terminal-message.out {
   color: #aaa;
   white-space: pre-wrap;
-  font-size: 1.15em;
+  font-size: 1.3em;
   line-height: 1.7;
 }
 
@@ -218,6 +218,28 @@ html, body {
   text-decoration: none;
 }
 
+/* 角色对话样式 */
+.terminal-message.out .dialogue {
+  margin: 0.3em 0;
+  line-height: 1.7;
+}
+
+.terminal-message.out .character-name {
+  font-weight: 700;
+  margin-right: 0.5em;
+  font-size: 1em;
+}
+
+.terminal-message.out .character-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+  vertical-align: middle;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
+}
+
 @media (max-width: 768px) {
   .terminal-content {
     padding: 0.75rem;
@@ -225,7 +247,7 @@ html, body {
   }
   
   .terminal-message.out {
-    font-size: 1em;
+    font-size: 1.15em;
     line-height: 1.6;
   }
   
@@ -260,7 +282,7 @@ html, body {
   }
   
   .terminal-message.out {
-    font-size: 0.95em;
+    font-size: 1.1em;
   }
   
   .choice-links {

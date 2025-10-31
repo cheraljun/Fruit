@@ -98,6 +98,9 @@ function Player(): JSX.Element {
       
       playerRef.current = player;
       
+      // 添加baseURL供MarkdownPlugin使用
+      (story as any)._baseURL = config.api.baseURL.replace('/api', '');
+      
       const startNodeId = searchParams.get('startNode');
       if (startNodeId) {
         await player.start(story, startNodeId);

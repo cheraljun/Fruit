@@ -77,9 +77,16 @@ function NodeEditPanel({ node, allNodes, onUpdate, onClose, onDeleteChoice, glob
   const [deleteHotspotConfirm, setDeleteHotspotConfirm] = useState<string | null>(null);
   
   const renderedHTML = useMemo(() => {
-    const rendered = pluginSystem.trigger('content:render', { text, nodeId: node.id });
+    const story = {
+      meta: storyMeta
+    };
+    const rendered = pluginSystem.trigger('content:render', { 
+      text, 
+      nodeId: node.id,
+      story 
+    });
     return rendered.renderedHTML || text;
-  }, [text, pluginSystem, node.id]);
+  }, [text, pluginSystem, node.id, storyMeta]);
 
   const isVisualNovelMode = storyMeta.displayMode === 'visual-novel';
 
@@ -187,6 +194,7 @@ function NodeEditPanel({ node, allNodes, onUpdate, onClose, onDeleteChoice, glob
   const handleTextChange = (newText: string): void => {
     setText(newText);
   };
+
 
   const handleNodeTypeChange = (newType: NodeType): void => {
     setNodeType(newType);
@@ -476,42 +484,6 @@ function NodeEditPanel({ node, allNodes, onUpdate, onClose, onDeleteChoice, glob
           )}
         </div>
 
-        <details className="markdown-help" style={{
-          marginBottom: '12px',
-          padding: '8px 12px',
-          background: isDark ? '#1e293b' : '#f9fafb',
-          border: isDark ? '1px solid #334155' : '1px solid #e5e7eb',
-          borderRadius: '6px',
-          fontSize: '0.875rem'
-        }}>
-          <summary style={{ cursor: 'pointer', fontWeight: '500', color: isDark ? '#cbd5e1' : '#374151', fontSize: '0.9rem' }}>
-            Markdown语法
-          </summary>
-          <div style={{ marginTop: '8px', color: isDark ? '#9ca3af' : '#6b7280', lineHeight: '1.6' }}>
-            <div style={{ fontFamily: 'monospace', fontSize: '0.8rem' }}>
-              <div><code>**粗体**</code> - 粗体文字</div>
-              <div><code>*斜体*</code> - 斜体文字</div>
-              <div><code>~~删除线~~</code> - 删除线</div>
-              <div><code>`代码`</code> - 行内代码</div>
-              <div><code># 一级标题</code> - 一级标题</div>
-              <div><code>## 二级标题</code> - 二级标题</div>
-              <div><code>### 三级标题</code> - 三级标题</div>
-              <div><code>&gt; 引用文字</code> - 引用块</div>
-              <div><code>- 列表项</code> - 无序列表</div>
-              <div><code>---</code> - 水平分隔线</div>
-              <div><code>[链接文字](网址)</code> - 超链接</div>
-              <div style={{ marginTop: '6px' }}><code>[color=red]彩色[/color]</code> - 自定义颜色</div>
-              <div><code>[bg=yellow]背景[/bg]</code> - 背景高亮</div>
-              <div><code>[big]大字[/big]</code> - 大字强调</div>
-              <div><code>[small]小字[/small]</code> - 小字注释</div>
-              <div><code>[center]居中[/center]</code> - 居中对齐</div>
-              <div><code>[right]右对齐[/right]</code> - 右对齐</div>
-              <div><code>[glow]发光[/glow]</code> - 发光特效</div>
-              <div style={{ marginTop: '6px' }}><code>[[选项文本]]</code> - 内嵌选项为超链接</div>
-            </div>
-          </div>
-        </details>
-
         <div className="form-group">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
             <label style={{ margin: 0 }}>小说文本</label>
@@ -528,12 +500,12 @@ function NodeEditPanel({ node, allNodes, onUpdate, onClose, onDeleteChoice, glob
             fontSize: '0.8rem',
             color: isDark ? '#94a3b8' : '#0369a1'
           }}>
-            提示：使用 [[选项文本]] 可以将选项内嵌到文本中（如：你可以[[向左走]]或[[向右走]]）
+            提示：查看左侧"脚本助手"了解所有可用的语法（Markdown、角色对话、变量、游戏模组等）
           </div>
           <textarea
             value={text}
             onChange={(e) => handleTextChange(e.target.value)}
-            placeholder="输入小说内容，支持 **粗体** *斜体* [color=red]彩色[/color] [[选项文本]] 等格式..."
+            placeholder="输入小说内容，支持 **粗体** *斜体* [color=red]彩色[/color] [[选项文本]] @角色名：对话 等格式..."
             rows={15}
           />
           <div style={{ marginTop: '12px' }}>

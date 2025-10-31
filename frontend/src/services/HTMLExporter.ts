@@ -80,6 +80,19 @@ export class HTMLExporter {
     
     const baseUrl = config.api.baseURL.replace('/api', '');
     
+    // 转换角色头像
+    if (story.meta.characters) {
+      for (const character of story.meta.characters) {
+        if (character.avatar?.imagePath) {
+          const imageUrl = `${baseUrl}/userdata/${currentUsername}/${character.avatar.imagePath}`;
+          const base64 = await this.imageUrlToBase64(imageUrl);
+          if (base64) {
+            character.avatar.imagePath = base64;
+          }
+        }
+      }
+    }
+    
     for (const node of story.nodes) {
       const nodeData = node.data;
       

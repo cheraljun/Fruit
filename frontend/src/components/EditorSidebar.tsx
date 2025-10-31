@@ -6,9 +6,10 @@
 import { useState, useEffect } from 'react';
 import { useNodeSearch } from '../hooks/useNodeSearch.ts';
 import { useTheme } from '../contexts/ThemeContext.tsx';
-import type { StoryMeta, ValidationResult, VariableDefinition } from '../../../shared/types/index.ts';
+import type { StoryMeta, ValidationResult, VariableDefinition, Character } from '../../../shared/types/index.ts';
 import ScriptHelper from './ScriptHelper.tsx';
 import VariableManager from './VariableManager.tsx';
+import CharacterManager from './CharacterManager.tsx';
 
 interface StoryStats {
   nodeCount: number;
@@ -327,7 +328,18 @@ function EditorSidebar({
           </div>
         </div>
 
-        {/* 4. 变量 */}
+        {/* 4. 角色 */}
+        <div className="section">
+          <CharacterManager
+            characters={storyMeta.characters || []}
+            onCharactersChange={(newCharacters) => {
+              onMetaChange({ ...storyMeta, characters: newCharacters });
+            }}
+            allNodesText={allNodes.map(n => n.text)}
+          />
+        </div>
+
+        {/* 5. 变量 */}
         <div className="section">
           <VariableManager
             variables={variables}
@@ -335,7 +347,7 @@ function EditorSidebar({
           />
         </div>
 
-        {/* 5. 布局 */}
+        {/* 6. 布局 */}
         <div className="section">
           <h3>布局</h3>
           <button 
@@ -352,13 +364,14 @@ function EditorSidebar({
           </button>
         </div>
 
-        {/* 6. 模组 */}
+        {/* 7. 脚本助手 */}
         <ScriptHelper 
           variables={variables}
+          characters={storyMeta.characters || []}
           onVariablesChange={onVariablesChange}
         />
 
-        {/* 7. 工具 */}
+        {/* 8. 工具 */}
         <div className="section">
           <h3>工具</h3>
           <button className="btn btn-secondary" onClick={onValidate}>
