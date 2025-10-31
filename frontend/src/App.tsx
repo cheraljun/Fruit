@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { PluginProvider } from './contexts/PluginContext.tsx'
 import { ThemeProvider } from './contexts/ThemeContext.tsx'
 import LandingPage from './pages/LandingPage.tsx'
+import StatementPage from './pages/StatementPage.tsx'
 import Dashboard from './pages/Dashboard.tsx'
 import Editor from './pages/Editor.tsx'
 import PlayerRouter from './pages/PlayerRouter.tsx'
@@ -19,6 +20,7 @@ function App(): JSX.Element {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<LandingPage />} />
+            <Route path="/statement" element={<StatementPage />} />
             <Route path="/app" element={<Dashboard />} />
             <Route path="/editor/:id" element={<Editor />} />
             <Route path="/play/:id" element={<PlayerRouter />} />
