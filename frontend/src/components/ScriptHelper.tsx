@@ -3,15 +3,10 @@
  * 职责：展示已启用游戏模组的使用文档
  */
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { usePluginSystem } from '../contexts/PluginContext.tsx';
 import type { GameModDocs } from '../../../shared/plugins/gamemods/types.js';
 import type { VariableDefinition } from '../../../shared/types/index.js';
-import { TimeSystemPlugin } from '../../../shared/plugins/gamemods/time-system/index.js';
-import { BackroomsPlugin, BACKROOMS_VARIABLE_COUNT } from '../../../shared/plugins/gamemods/backrooms/index.js';
-import { TIME_SYSTEM_VARIABLE_COUNT } from '../../../shared/plugins/gamemods/time-system/index.js';
-import { injectBackroomsVariables } from './ScriptHelper/injectors/BackroomsInjector.js';
-import { injectTimeSystemVariables } from './ScriptHelper/injectors/TimeSystemInjector.js';
 
 interface ScriptHelperProps {
   variables: VariableDefinition[];
@@ -28,11 +23,15 @@ function ScriptHelper({ variables, onVariablesChange }: ScriptHelperProps): JSX.
     .filter(p => p.plugin.metadata.category === 'gamemod')
     .map(p => p.plugin.metadata.id);
   
-  // 游戏模组文档
-  const gameModDocs: Record<string, GameModDocs> = {
-    'gamemod.time-system': TimeSystemPlugin.getDocs(),
-    'gamemod.backrooms': BackroomsPlugin.getDocs()
-  };
+  // 通过钩子动态收集游戏模组文档
+  const gameModDocs: Record<string, GameModDocs> = useMemo(() => {
+    return pluginSystem.trigger('plugin:get-docs', {});
+  }, [pluginSystem]);
+  
+  // 通过钩子动态收集所有插件变量
+  const allPluginVariables: VariableDefinition[] = useMemo(() => {
+    return pluginSystem.trigger('plugin:get-variables', []);
+  }, [pluginSystem]);
 
   const toggleModExpanded = (modId: string) => {
     setExpandedMods(prev => ({
@@ -40,7 +39,28 @@ function ScriptHelper({ variables, onVariablesChange }: ScriptHelperProps): JSX.
       [modId]: !prev[modId]
     }));
   };
-
+  
+  // 注入指定模组的所有变量
+  const injectModVariables = (modId: string) => {
+    const modVariables = allPluginVariables.filter(v => v.pluginId === modId);
+    const newVars = [...variables];
+    let addedCount = 0;
+    
+    modVariables.forEach(varDef => {
+      const exists = variables.some(v => v.id === varDef.id);
+      if (!exists) {
+        newVars.push(varDef);
+        addedCount++;
+      }
+    });
+    
+    if (addedCount > 0) {
+      onVariablesChange(newVars);
+      console.log(`[ScriptHelper] Injected ${addedCount} variables from ${modId}`);
+    } else {
+      console.log(`[ScriptHelper] All variables from ${modId} already exist`);
+    }
+  };
 
   if (enabledGameMods.length === 0) {
     return (
@@ -125,45 +145,31 @@ function ScriptHelper({ variables, onVariablesChange }: ScriptHelperProps): JSX.
                       {docs.description}
                     </p>
                     
-                    {modId === 'gamemod.time-system' && (
-                      <button
-                        onClick={() => injectTimeSystemVariables(variables, onVariablesChange)}
-                        style={{
-                          padding: '8px 12px',
-                          marginBottom: '12px',
-                          background: 'var(--theme-brand-primary)',
-                          color: '#ffffff',
-                          border: 'none',
-                          borderRadius: '4px',
-                          fontSize: '0.8rem',
-                          fontWeight: '600',
-                          cursor: 'pointer',
-                          width: '100%'
-                        }}
-                      >
-                        注入变量（{TIME_SYSTEM_VARIABLE_COUNT}个）
-                      </button>
-                    )}
-                    
-                    {modId === 'gamemod.backrooms' && (
-                      <button
-                        onClick={() => injectBackroomsVariables(variables, onVariablesChange)}
-                        style={{
-                          padding: '8px 12px',
-                          marginBottom: '12px',
-                          background: 'var(--theme-brand-primary)',
-                          color: '#ffffff',
-                          border: 'none',
-                          borderRadius: '4px',
-                          fontSize: '0.8rem',
-                          fontWeight: '600',
-                          cursor: 'pointer',
-                          width: '100%'
-                        }}
-                      >
-                        注入变量（{BACKROOMS_VARIABLE_COUNT}个）
-                      </button>
-                    )}
+                    {(() => {
+                      const modVariables = allPluginVariables.filter(v => v.pluginId === modId);
+                      if (modVariables.length > 0) {
+                        return (
+                          <button
+                            onClick={() => injectModVariables(modId)}
+                            style={{
+                              padding: '8px 12px',
+                              marginBottom: '12px',
+                              background: 'var(--theme-brand-primary)',
+                              color: '#ffffff',
+                              border: 'none',
+                              borderRadius: '4px',
+                              fontSize: '0.8rem',
+                              fontWeight: '600',
+                              cursor: 'pointer',
+                              width: '100%'
+                            }}
+                          >
+                            注入变量（{modVariables.length}个）
+                          </button>
+                        );
+                      }
+                      return null;
+                    })()}
                     
                     {docs.usage?.setup && docs.usage.setup.map((line, idx) => (
                       <div key={idx} style={{ 

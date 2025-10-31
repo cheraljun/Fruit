@@ -12,7 +12,9 @@ import { PluginBase } from '../../../plugin/PluginBase.js';
 import type { PluginMetadata } from '../../../plugin/types.js';
 import type { RuntimePlugin } from '../../basicmod/RuntimePlugin.js';
 import type { GameModDocs } from '../types.js';
+import type { VariableDefinition } from '../../../types/index.js';
 import { getTimeSystemDocs } from './docs.js';
+import { TIME_SYSTEM_VARIABLES } from './variables.js';
 
 export class TimeSystemPlugin extends PluginBase {
   metadata: PluginMetadata = {
@@ -120,7 +122,7 @@ export class TimeSystemPlugin extends PluginBase {
   }
 
   /**
-   * 钩子：注册 Blockly 积木块
+   * 钩子：注册 Blockly 积木块和工具箱类别
    */
   hooks = {
     'blockly:register-blocks': (blocks: any[]) => {
@@ -174,11 +176,37 @@ export class TimeSystemPlugin extends PluginBase {
       
       console.log(`[TimeSystemPlugin] Providing ${Object.keys(timeGenerators).length} generators`);
       return { ...generators, ...timeGenerators };
+    },
+    
+    'blockly:register-toolbox-categories': (categories: any[]) => {
+      console.log('[TimeSystemPlugin] Registering toolbox category via hook...');
+      
+      const timeCategory = {
+        kind: 'category',
+        name: '时间',
+        colour: 45,
+        contents: [
+          { kind: 'block', type: 'time_add' },
+          { kind: 'block', type: 'time_format' }
+        ]
+      };
+      
+      return [...categories, timeCategory];
+    },
+    
+    'plugin:get-variables': (variables: VariableDefinition[]) => {
+      console.log('[TimeSystemPlugin] Providing variables via hook...');
+      return [...variables, ...TIME_SYSTEM_VARIABLES];
+    },
+    
+    'plugin:get-docs': (docs: Record<string, GameModDocs>) => {
+      console.log('[TimeSystemPlugin] Providing docs via hook...');
+      return { ...docs, [this.metadata.id]: getTimeSystemDocs() };
     }
   };
 
   /**
-   * 获取模组使用文档
+   * 获取模组使用文档（静态方法，向后兼容）
    */
   static getDocs(): GameModDocs {
     return getTimeSystemDocs();

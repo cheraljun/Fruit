@@ -51,7 +51,7 @@ function BlocklyEditor({
     // 传入 pluginSystem，让游戏模组可以注册自己的积木
     initializeBlockly(pluginSystem);
 
-    const toolbox = createCustomToolbox();
+    const toolbox = createCustomToolbox(pluginSystem);
 
     console.log('[BlocklyEditor] Initializing workspace...', {
       div: blocklyDivRef.current,

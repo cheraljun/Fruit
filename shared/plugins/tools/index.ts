@@ -23,3 +23,18 @@ export {
 
 export * from './layouts/index.js';
 
+/**
+ * 创建所有工具插件实例
+ */
+export function createToolPlugins() {
+  return [
+    new MarkdownPlugin(),
+    new ValidatorPlugin(),
+    new AnalyzerPlugin(),
+    new HierarchicalLayoutPlugin(),
+    new RadialLayoutPlugin(),
+    new ChoiceEmbeddingPlugin(),
+    new ExcelExporterPlugin()
+  ];
+}
+

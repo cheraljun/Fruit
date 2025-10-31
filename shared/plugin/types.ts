@@ -49,7 +49,11 @@ export type PluginHook =
   | 'player:command'
   // Blockly扩展
   | 'blockly:register-blocks'
-  | 'blockly:register-generators';
+  | 'blockly:register-generators'
+  | 'blockly:register-toolbox-categories'
+  // 插件变量注册
+  | 'plugin:get-variables'
+  | 'plugin:get-docs';
 
 /**
  * 插件元数据

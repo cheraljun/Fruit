@@ -12,7 +12,9 @@ import { PluginBase } from '../../../plugin/PluginBase.js';
 import type { PluginMetadata } from '../../../plugin/types.js';
 import type { RuntimePlugin } from '../../basicmod/RuntimePlugin.js';
 import type { GameModDocs } from '../types.js';
+import type { VariableDefinition } from '../../../types/index.js';
 import { getBackroomsDocs } from './docs.js';
+import { BACKROOMS_VARIABLES } from './variables.js';
 
 export class BackroomsPlugin extends PluginBase {
   metadata: PluginMetadata = {
@@ -124,7 +126,7 @@ export class BackroomsPlugin extends PluginBase {
   // ========== Blockly积木块注册 ==========
 
   /**
-   * 钩子：注册 Blockly 积木块
+   * 钩子：注册 Blockly 积木块和工具箱类别
    */
   hooks = {
     'blockly:register-blocks': (blocks: any[]) => {
@@ -277,11 +279,39 @@ export class BackroomsPlugin extends PluginBase {
       
       console.log(`[BackroomsPlugin] Providing ${Object.keys(backroomsGenerators).length} generators`);
       return { ...generators, ...backroomsGenerators };
+    },
+    
+    'blockly:register-toolbox-categories': (categories: any[]) => {
+      console.log('[BackroomsPlugin] Registering toolbox category via hook...');
+      
+      const backroomsCategory = {
+        kind: 'category',
+        name: 'Backrooms',
+        colour: 65,
+        contents: [
+          { kind: 'block', type: 'backrooms_modify_attribute' },
+          { kind: 'block', type: 'backrooms_modify_item' },
+          { kind: 'block', type: 'backrooms_check_attribute' },
+          { kind: 'block', type: 'backrooms_check_item' }
+        ]
+      };
+      
+      return [...categories, backroomsCategory];
+    },
+    
+    'plugin:get-variables': (variables: VariableDefinition[]) => {
+      console.log('[BackroomsPlugin] Providing variables via hook...');
+      return [...variables, ...BACKROOMS_VARIABLES];
+    },
+    
+    'plugin:get-docs': (docs: Record<string, GameModDocs>) => {
+      console.log('[BackroomsPlugin] Providing docs via hook...');
+      return { ...docs, [this.metadata.id]: getBackroomsDocs() };
     }
   };
 
   /**
-   * 获取模组使用文档
+   * 获取模组使用文档（静态方法，向后兼容）
    */
   static getDocs(): GameModDocs {
     return getBackroomsDocs();

@@ -14,7 +14,6 @@ import { javascriptGenerator } from 'blockly/javascript';
 // 导入中文语言包
 import * as ZhHans from 'blockly/msg/zh-hans';
 
-import { BlocklyPlugin } from '../../../shared/plugins/basicmod/BlocklyPlugin';
 import { BlocklyExecutor } from '../../../shared/core/BlocklyExecutor';
 import type { BlocklyWorkspaceState } from '../../../shared/types/blockly';
 import type { PluginSystem } from '../../../shared/plugin/PluginSystem';
@@ -237,33 +236,20 @@ export function initializeBlockly(pluginSystem: PluginSystem): void {
 
 /**
  * 创建完整的工具箱配置
- * 包含 Blockly 所有内置类别 + 自定义类别
+ * 包含 Blockly 所有内置类别 + 插件动态注册的类别
+ * 
+ * @param pluginSystem - 插件系统实例，用于收集插件提供的工具箱类别
  */
-export function createCustomToolbox() {
+export function createCustomToolbox(pluginSystem: PluginSystem) {
+  // 通过钩子收集所有插件提供的工具箱类别
+  const pluginCategories = pluginSystem.trigger('blockly:register-toolbox-categories', []);
+  console.log(`[Blockly] Collected ${pluginCategories.length} plugin toolbox categories`);
+  
   return {
     kind: 'categoryToolbox',
     contents: [
-      // ==================== 自定义类别（互动小说专用）====================
-      {
-        kind: 'category',
-        name: '工具',
-        colour: 90,
-        contents: [
-          { kind: 'block', type: 'story_random' },
-          { kind: 'block', type: 'story_show_text' }
-        ]
-      },
-      
-      // 时间类别
-      {
-        kind: 'category',
-        name: '时间',
-        colour: 45,
-        contents: [
-          { kind: 'block', type: 'time_add' },
-          { kind: 'block', type: 'time_format' }
-        ]
-      },
+      // ==================== 插件类别（动态收集）====================
+      ...pluginCategories,
 
       // ==================== Blockly 内置类别 ====================
       

@@ -24,7 +24,7 @@ export class BlocklyPlugin extends PluginBase {
   }
 
   /**
-   * 钩子：注册自定义积木块
+   * 钩子：注册自定义积木块和工具箱类别
    */
   hooks = {
     'blockly:register-blocks': (blocks: any[]) => {
@@ -91,6 +91,22 @@ export class BlocklyPlugin extends PluginBase {
       
       console.log(`[BlocklyPlugin] Providing ${Object.keys(customGenerators).length} generators`);
       return { ...generators, ...customGenerators };
+    },
+    
+    'blockly:register-toolbox-categories': (categories: any[]) => {
+      console.log('[BlocklyPlugin] Registering toolbox category via hook...');
+      
+      const toolsCategory = {
+        kind: 'category',
+        name: '工具',
+        colour: 90,
+        contents: [
+          { kind: 'block', type: 'story_random' },
+          { kind: 'block', type: 'story_show_text' }
+        ]
+      };
+      
+      return [...categories, toolsCategory];
     }
   };
 
