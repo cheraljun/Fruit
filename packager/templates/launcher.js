@@ -1,5 +1,5 @@
 /**
- * MoScript 桌面版启动脚本
+ * mo 桌面版启动脚本
  * 功能：
  * 1. 检测端口占用
  * 2. 设置环境变量
@@ -44,7 +44,7 @@ if (!fs.existsSync(USER_DATA_PATH)) {
 fs.writeFileSync(PID_FILE, String(process.pid));
 
 console.log('');
-console.log('MoScript 互动小说编辑器 - 桌面版');
+console.log('mo 互动小说编辑器 - 桌面版');
 console.log('');
 console.log('正在启动服务...');
 console.log('');
@@ -137,7 +137,7 @@ async function main() {
       console.error(`错误: 端口 ${PORT} 已被占用！`);
       console.error('');
       console.error('可能的原因：');
-      console.error('  1. MoScript 已经在运行');
+      console.error('  1. mo 已经在运行');
       console.error('  2. 其他程序占用了该端口');
       console.error('');
       console.error('解决方法：');

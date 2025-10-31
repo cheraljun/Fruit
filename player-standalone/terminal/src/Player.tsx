@@ -61,7 +61,7 @@ function Player(): JSX.Element {
       }
 
       const player = new PlayerCore({
-        saveKeyPrefix: `MoScript_save_${story.id}_`,
+        saveKeyPrefix: `mo_save_${story.id}_`,
         onMessagesChange: (msgs) => setMessages([...msgs]),
         onChoicesChange: (choices) => setCurrentChoices(choices),
         onExit: () => {

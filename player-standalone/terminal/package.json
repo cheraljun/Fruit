@@ -1,7 +1,7 @@
 {
-  "name": "MoScript-terminal-player",
+  "name": "mo-terminal-player",
   "version": "1.0.0",
-  "description": "MoScript终端模式播放器",
+  "description": "mo终端模式播放器",
   "private": true,
   "type": "module",
   "scripts": {

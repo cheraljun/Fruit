@@ -1,5 +1,5 @@
 /**
- * MoScript 桌面版打包脚本
+ * mo 桌面版打包脚本
  * 
  * 功能：
  * 1. 自动构建所有模块
@@ -406,10 +406,10 @@ async function generateLauncher() {
   // 创建 app/package.json（标记为 ES Module）
   log('  生成 app/package.json...');
   const appPackageJson = {
-    name: 'moscript-desktop-app',
+    name: 'mo-desktop-app',
     version: '1.0.0',
     type: 'module',
-    description: 'MoScript 互动小说编辑器 - 桌面版',
+    description: 'mo 互动小说编辑器 - 桌面版',
   };
   fs.writeFileSync(
     path.join(appDir, 'package.json'),
@@ -471,7 +471,7 @@ async function createZip() {
   ensureDir(CONFIG.outputDir);
   
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
-  const zipName = `MoScript-Desktop-${timestamp}.zip`;
+  const zipName = `mo-Desktop-${timestamp}.zip`;
   const zipPath = path.join(CONFIG.outputDir, zipName);
   
   log(`  创建压缩包: ${zipName}`);
@@ -514,7 +514,7 @@ async function createZip() {
     archive.pipe(output);
     
     // 添加所有文件
-    archive.directory(CONFIG.tempDir, 'MoScript-Desktop');
+    archive.directory(CONFIG.tempDir, 'mo-Desktop');
     
     archive.finalize();
   });
@@ -527,7 +527,7 @@ async function main() {
   const startTime = Date.now();
   
   log('='.repeat(60), colors.bright);
-  log('  MoScript 桌面版打包工具', colors.bright);
+  log('  mo 桌面版打包工具', colors.bright);
   log('='.repeat(60), colors.bright);
   log('');
   
@@ -559,7 +559,7 @@ async function main() {
     log('');
     log('  使用方法:', colors.bright);
     log('    1. 解压 ZIP 文件');
-    log('    2. 双击"启动MoScript.cmd"');
+    log('    2. 双击"启动mo.cmd"');
     log('    3. 浏览器会自动打开编辑器');
     log('');
     log('='.repeat(60), colors.bright + colors.green);

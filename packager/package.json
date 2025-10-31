@@ -1,7 +1,7 @@
 {
-  "name": "moscript-packager",
+  "name": "mo-packager",
   "version": "1.0.0",
-  "description": "MoScript 桌面版打包工具",
+  "description": "mo 桌面版打包工具",
   "type": "module",
   "scripts": {
     "build": "node build-portable.js"

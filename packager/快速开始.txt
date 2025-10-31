@@ -1,4 +1,4 @@
-MoScript 桌面版打包工具 - 快速开始
+mo 桌面版打包工具 - 快速开始
 
 第一步：安装依赖
 
@@ -26,7 +26,7 @@ MoScript 桌面版打包工具 - 快速开始
 
 打包完成后，在 output/ 目录下会生成：
 
-    MoScript-Desktop-{时间戳}.zip
+    mo-Desktop-{时间戳}.zip
 
 这就是可分发的桌面版。
 

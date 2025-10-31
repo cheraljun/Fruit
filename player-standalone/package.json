@@ -1,7 +1,7 @@
 {
-  "name": "MoScript-player-standalone",
+  "name": "mo-player-standalone",
   "version": "1.0.0",
-  "description": "MoScript独立播放器（用于HTML导出）",
+  "description": "mo独立播放器（用于HTML导出）",
   "private": true,
   "type": "module",
   "scripts": {

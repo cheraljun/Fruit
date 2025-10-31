@@ -47,10 +47,10 @@ export class EmailSender {
     const mailOptions = {
       from: emailConfig.from,
       to,
-      subject: 'MoScript - 邮箱验证码',
+      subject: 'mo - 邮箱验证码',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #333;">MoScript邮箱验证</h2>
+          <h2 style="color: #333;">mo邮箱验证</h2>
           <p style="font-size: 16px; color: #666;">您的验证码是：</p>
           <div style="background-color: #f5f5f5; padding: 20px; text-align: center; font-size: 32px; font-weight: bold; color: #333; letter-spacing: 8px; margin: 20px 0;">
             ${code}
@@ -84,7 +84,7 @@ export class EmailSender {
     const mailOptions = {
       from: emailConfig.from,
       to,
-      subject: 'MoScript - 邮箱绑定成功',
+      subject: 'mo - 邮箱绑定成功',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #333;">邮箱绑定成功</h2>

@@ -1,6 +1,6 @@
-# MoScript 桌面版打包工具
+# mo 桌面版打包工具
 
-将 MoScript 打包成 Windows 桌面应用（便携版）。
+将 mo 打包成 Windows 桌面应用（便携版）。
 
 ## 快速开始
 
@@ -30,13 +30,13 @@ npm run build
 打包完成后，在 `packager/output/` 目录下会生成：
 
 ```
-MoScript-Desktop-{timestamp}.zip
+mo-Desktop-{timestamp}.zip
 ```
 
 ## 产物结构
 
 ```
-MoScript-Desktop/
+mo-Desktop/
 ├── nodejs/                    # Node.js 便携版 (~50 MB)
 ├── app/                       # 应用程序
 │   ├── backend/
@@ -140,7 +140,7 @@ A: 脚本已使用国内镜像。如果仍然很慢，可以手动下载 Node.js
 A: 编辑 `build-portable.js` 中的 `createZip()` 函数：
 
 ```javascript
-const zipName = `MoScript-Desktop-v1.0.0.zip`; // 自定义名称
+const zipName = `mo-Desktop-v1.0.0.zip`; // 自定义名称
 ```
 
 **Q: 如何减小体积？**

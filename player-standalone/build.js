@@ -14,7 +14,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-console.log('    MoScript 独立播放器构建脚本');
+console.log('    mo 独立播放器构建脚本');
 
 const players = [
   { name: 'Terminal', dir: 'terminal' },

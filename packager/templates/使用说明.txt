@@ -1,8 +1,8 @@
-MoScript 互动小说编辑器 - 桌面版使用说明
+mo 互动小说编辑器 - 桌面版使用说明
 
 这是什么？
 
-MoScript 是一个功能强大的互动小说编辑器，支持可视化编辑、
+mo 是一个功能强大的互动小说编辑器，支持可视化编辑、
 Blockly 图形化编程和导出独立播放器。
 
 本桌面版无需安装，解压即用。
@@ -42,7 +42,7 @@ Q: 双击启动没反应？
 A: 检查是否有杀毒软件拦截，将文件夹添加到白名单
 
 Q: 提示端口被占用？
-A: 说明 MoScript 已经在运行，直接访问 http://localhost:3001
+A: 说明 mo 已经在运行，直接访问 http://localhost:3001
    或关闭之前的命令行窗口
 
 Q: 浏览器没有自动打开？
@@ -57,7 +57,7 @@ A: 复制整个 userdata/ 文件夹即可
 
 技术支持
 
-- 项目主页: https://github.com/cheraljun/MoScript
+- 项目主页: https://github.com/cheraljun/mo
 - 微信交流: 查看 wechat-qr.png 和 wechat-person.png
 - 欢迎提交问题和建议
 

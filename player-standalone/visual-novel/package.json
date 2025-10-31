@@ -1,7 +1,7 @@
 {
-  "name": "MoScript-visual-novel-player",
+  "name": "mo-visual-novel-player",
   "version": "1.0.0",
-  "description": "MoScript视觉小说模式播放器",
+  "description": "mo视觉小说模式播放器",
   "private": true,
   "type": "module",
   "scripts": {

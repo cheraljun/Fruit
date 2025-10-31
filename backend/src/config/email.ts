@@ -7,7 +7,7 @@
  * 2. 在.env文件中配置：
  *    EMAIL_USER=your-qq-email@qq.com
  *    EMAIL_AUTH_CODE=your-smtp-authorization-code
- *    EMAIL_FROM="MoScript" <your-qq-email@qq.com>
+ *    EMAIL_FROM="mo" <your-qq-email@qq.com>
  * 3. QQ邮箱SMTP服务器：smtp.qq.com，端口：465（SSL）
  */
 
@@ -36,7 +36,7 @@ export const emailConfig: EmailConfig = {
     user: process.env.EMAIL_USER || '',
     pass: process.env.EMAIL_AUTH_CODE || '',
   },
-  from: process.env.EMAIL_FROM || '"MoScript" <noreply@example.com>',
+  from: process.env.EMAIL_FROM || '"mo" <noreply@example.com>',
 };
 
 /**

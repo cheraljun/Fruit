@@ -73,7 +73,7 @@ const config: Config = {
 
   // 应用配置
   app: {
-    name: 'MoScript API',
+    name: 'mo API',
     version: '1.0.0',
     isDevelopment,
   },
