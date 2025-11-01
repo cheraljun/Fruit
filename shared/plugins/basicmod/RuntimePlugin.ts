@@ -17,7 +17,7 @@ export class RuntimePlugin extends PluginBase {
     id: 'basicmod.runtime',
     name: '基础运行时',
     version: '3.0.0',
-    author: '系统',
+    author: '墨水官方',
     description: '提供变量存储和模板替换功能',
     icon: 'RT',
     category: 'basicmod',

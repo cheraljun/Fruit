@@ -11,7 +11,7 @@ export class BlocklyPlugin extends PluginBase {
     id: 'basicmod.blockly',
     name: 'Blockly基础积木',
     version: '1.0.0',
-    author: '系统',
+    author: '墨水官方',
     description: '提供互动小说专用的 Blockly 积木块定义',
     icon: 'BLOCKLY',
     category: 'basicmod',

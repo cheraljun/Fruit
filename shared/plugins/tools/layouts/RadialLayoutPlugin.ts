@@ -37,7 +37,7 @@ export class RadialLayoutPlugin extends PluginBase {
     id: 'tool.layout.radial',
     name: '辐射布局',
     version: '1.0.0',
-    author: '系统',
+    author: '墨水官方',
     description: '以Hub节点为中心辐射排列，适合循环叙事和开放世界故事',
     icon: 'RAD',
     category: 'tool',

@@ -17,7 +17,7 @@ export class ChoiceEmbeddingPlugin extends PluginBase {
     id: 'tool.choice-embedding',
     name: '选项内嵌',
     version: '1.0.0',
-    author: '系统',
+    author: '墨水官方',
     description: '支持使用[[选项文本]]在文本中内嵌选项',
     icon: 'LINK',
     category: 'tool',

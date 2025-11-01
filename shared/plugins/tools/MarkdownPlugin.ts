@@ -13,7 +13,7 @@ export class MarkdownPlugin extends PluginBase {
     id: 'tool.markdown',
     name: 'Markdown渲染',
     version: '1.0.0',
-    author: '系统',
+    author: '墨水官方',
     description: '支持Markdown语法和自定义标签渲染',
     icon: 'MD',
     category: 'tool',

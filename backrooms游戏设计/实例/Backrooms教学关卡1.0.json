@@ -1,0 +1,490 @@
+{
+  "id": "story_backrooms_level0",
+  "meta": {
+    "title": "Backrooms - Level 0: The Lobby",
+    "author": "墨水官方",
+    "description": "后室教学关卡。你意外Noclip进入Level 0，在无尽的黄色走廊中探索、遭遇威胁、寻找出口。纯节点流叙事，30个节点，多重分支。",
+    "start_node": 1,
+    "displayMode": "visual-novel"
+  },
+  "nodes": [
+    {
+      "id": "1",
+      "type": "storyNode",
+      "position": {"x": 100, "y": 500},
+      "data": {
+        "nodeId": 1,
+        "text": "你记得那是个普通的周二下午。你在超市买完菜，提着购物袋走出电梯。疲惫，恍惚，脑子里还在想着晚饭要做什么。你的脚自动抬起，踩向下一个台阶——然后，**空了**。不是跌倒。不是踩空。是一种更奇怪的感觉——像脚踩进了一层不存在的空气，然后整个人...穿过去了。视野闪烁。一瞬间的晕眩。[[睁开眼睛]]",
+        "choices": [
+          {"id": "c1_1", "text": "睁开眼睛"}
+        ],
+        "nodeType": "start",
+        "tags": ["Level0", "开场"]
+      }
+    },
+    {
+      "id": "2",
+      "type": "storyNode",
+      "position": {"x": 600, "y": 500},
+      "data": {
+        "nodeId": 2,
+        "text": "**黄色**。无处不在的黄色。墙壁贴着泛黄的墙纸，印花图案重复着某种无意义的几何纹理。地面是潮湿的旧地毯，颜色介于黄色和绿色之间，踩上去发出吱吱的声音。头顶是荧光灯，发出刺眼的白光和持续的嗡鸣声——嗡嗡嗡的声音——400赫兹的低频震动，钻进你的耳膜。你[[站起来]]。",
+        "choices": [
+          {"id": "c2_1", "text": "站起来"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "开场"]
+      }
+    },
+    {
+      "id": "3",
+      "type": "storyNode",
+      "position": {"x": 1100, "y": 500},
+      "data": {
+        "nodeId": 3,
+        "text": "你站起来，环顾四周。这是一条走廊。笔直的，看不到尽头的走廊。墙壁两侧没有窗户，只有偶尔的转角和更多的走廊。荧光灯规律地分布在天花板上，一盏接一盏，延伸到视野的尽头。你向后看——也是走廊。你刚才是怎么来到这里的？你记不清了。**没有门**。**没有楼梯**。**只有走廊**。你可以[[呼喊求助]]，或者[[选择一个方向前进]]。",
+        "choices": [
+          {"id": "c3_1", "text": "呼喊求助"},
+          {"id": "c3_2", "text": "选择一个方向前进"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "探索"]
+      }
+    },
+    {
+      "id": "4",
+      "type": "storyNode",
+      "position": {"x": 1600, "y": 300},
+      "data": {
+        "nodeId": 4,
+        "text": "『喂！』你喊道。声音在走廊中回荡，然后迅速被潮湿的地毯和墙纸吸收。回声很短促，不自然地快。『有人吗？！』只有荧光灯的嗡鸣声回答你。你等了一分钟。没有回应。没有脚步声。没有任何人类活动的迹象。完全的，死一般的寂静。你只能[[开始探索]]。",
+        "choices": [
+          {"id": "c4_1", "text": "开始探索"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "探索"]
+      }
+    },
+    {
+      "id": "5",
+      "type": "storyNode",
+      "position": {"x": 1600, "y": 700},
+      "data": {
+        "nodeId": 5,
+        "text": "你选择了一个方向——前方看起来和后方一模一样，所以方向其实无所谓——然后迈步前进。地毯湿漉漉的，踩上去像踩在海绵上。你的鞋底渗进水分，每一步都发出*吱————吱————吱————*的声音，和荧光灯的嗡鸣混合在一起，形成某种压抑的交响乐。你[[继续前进]]。",
+        "choices": [
+          {"id": "c5_1", "text": "继续前进"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "探索"]
+      }
+    },
+    {
+      "id": "6",
+      "type": "storyNode",
+      "position": {"x": 2100, "y": 500},
+      "data": {
+        "nodeId": 6,
+        "text": "你走了大约五分钟，经过了12盏荧光灯、3个转角（都通往更多走廊）、2个小房间（空的，只有墙壁和地毯）、0个出口、0个人。墙纸的图案开始让你头晕。它重复着，一模一样的图案，每隔30厘米就重复一次。你盯着它看，突然感觉...它在动？不，只是你的错觉。只是太累了。只是太单调了。你可以[[做个标记]]，或者[[继续探索]]。",
+        "choices": [
+          {"id": "c6_1", "text": "做个标记"},
+          {"id": "c6_2", "text": "继续探索"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "探索"]
+      }
+    },
+    {
+      "id": "7",
+      "type": "storyNode",
+      "position": {"x": 2600, "y": 300},
+      "data": {
+        "nodeId": 7,
+        "text": "你用钥匙在墙上刮出一个箭头，标记『起点』。墙纸很软，很容易刮破。你在箭头旁写下时间：『14:32』。至少现在你有了参照点。你[[继续探索]]。",
+        "choices": [
+          {"id": "c7_1", "text": "继续探索"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "探索"]
+      }
+    },
+    {
+      "id": "8",
+      "type": "storyNode",
+      "position": {"x": 2600, "y": 700},
+      "data": {
+        "nodeId": 8,
+        "text": "你转过一个弯。这条走廊...你见过？不对，你当然见过，所有走廊都一样。但这个转角...这盏灯...这块地毯上的污渍...你停下来，心跳加速。你在墙上做了标记吗？没有。你有任何方法确认你没有走回原点吗？**没有**。你...是不是在循环？你可以[[深呼吸，冷静下来]]，或者[[加快速度前进]]。",
+        "choices": [
+          {"id": "c8_1", "text": "深呼吸，冷静下来"},
+          {"id": "c8_2", "text": "加快速度前进"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "探索"]
+      }
+    },
+    {
+      "id": "9",
+      "type": "storyNode",
+      "position": {"x": 3100, "y": 200},
+      "data": {
+        "nodeId": 9,
+        "text": "『冷静，』你对自己说，『你只是走了十分钟。不可能循环。继续走。』你强迫自己保持理性。迷路时，标记路线。保持前进，不折返。你继续探索，这次更有系统：每个转角都做标记，每个房间都快速检查，保持前进。[[继续]]",
+        "choices": [
+          {"id": "c9_1", "text": "继续"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "探索"]
+      }
+    },
+    {
+      "id": "10",
+      "type": "storyNode",
+      "position": {"x": 3100, "y": 800},
+      "data": {
+        "nodeId": 10,
+        "text": "你加快脚步，几乎是小跑着前进。走廊、转角、走廊、转角——一切都在重复。你的呼吸开始急促。『这不是真的，』你喃喃自语，『这是梦。这肯定是梦。』你掐自己的手臂。**疼**。你掐得更用力。**更疼**。『醒来！』你对自己喊道。但你已经醒着了。这是现实。你可以[[靠墙坐下休息]]，或者[[继续奔跑]]。",
+        "choices": [
+          {"id": "c10_1", "text": "靠墙坐下休息"},
+          {"id": "c10_2", "text": "继续奔跑"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "探索"]
+      }
+    },
+    {
+      "id": "11",
+      "type": "storyNode",
+      "position": {"x": 3600, "y": 100},
+      "data": {
+        "nodeId": 11,
+        "text": "你靠在墙上，滑坐到地上。地毯是湿的，你的裤子吸收了水分，但你不在乎。几分钟后，你感觉好了一些。恐慌消退了。你需要理性思考。如果这是真实的，那就有规律。如果有规律，就能找到出路。你[[站起来继续]]。",
+        "choices": [
+          {"id": "c11_1", "text": "站起来继续"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "探索"]
+      }
+    },
+    {
+      "id": "12",
+      "type": "storyNode",
+      "position": {"x": 3600, "y": 900},
+      "data": {
+        "nodeId": 12,
+        "text": "你奔跑着，直到双腿发软，直到肺部灼烧。终于，你停下来，靠在墙上大口喘气。走廊还是走廊。荧光灯还是荧光灯。但至少你动了。至少你没有放弃。你可以[[休息一下]]，或者[[继续探索]]。",
+        "choices": [
+          {"id": "c12_1", "text": "休息一下"},
+          {"id": "c12_2", "text": "继续探索"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "探索"]
+      }
+    },
+    {
+      "id": "13",
+      "type": "storyNode",
+      "position": {"x": 4100, "y": 500},
+      "data": {
+        "nodeId": 13,
+        "text": "你走了很久——也许一个小时？你的手表还在走，但时间感已经模糊了。突然，你闻到了一种奇怪的气味。混合着霉味、陈旧织物的味道、还有...杏仁？那是什么？你深吸一口气，试图定位气味来源。前方？左边？你决定[[寻找气味来源]]。",
+        "choices": [
+          {"id": "c13_1", "text": "寻找气味来源"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "探索"]
+      }
+    },
+    {
+      "id": "14",
+      "type": "storyNode",
+      "position": {"x": 4600, "y": 500},
+      "data": {
+        "nodeId": 14,
+        "text": "你跟随气味，转过几个弯，进入一个小房间。角落里，有一个透明的塑料瓶。里面装着**淡蓝色**的液体。你拾起来。瓶子上没有标签，但液体闻起来...像杏仁。你拧开瓶盖。味道是甜的。你犹豫了。这可能有毒。这可能是陷阱。但你的嘴唇已经干裂了，喉咙像火烧。你可以[[喝一口]]，或者[[放下瓶子]]。",
+        "choices": [
+          {"id": "c14_1", "text": "喝一口"},
+          {"id": "c14_2", "text": "放下瓶子"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "探索"]
+      }
+    },
+    {
+      "id": "15",
+      "type": "storyNode",
+      "position": {"x": 5100, "y": 300},
+      "data": {
+        "nodeId": 15,
+        "text": "你喝了一口。[big]甜[/big]。[big]清爽[/big]。[big]像甘露[/big]。液体流入喉咙，然后...某种温暖扩散到全身。不是物理的温暖，是更深层的——精神的平静。你突然感觉不那么恐慌了。荧光灯的嗡鸣声没那么刺耳。墙纸的图案没那么令人不安。『我还活着，』你想，『我会找到出路的。』你把空瓶装进口袋。也许能再找到更多。你[[继续探索]]。",
+        "choices": [
+          {"id": "c15_1", "text": "继续探索"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "探索"]
+      }
+    },
+    {
+      "id": "16",
+      "type": "storyNode",
+      "position": {"x": 5100, "y": 700},
+      "data": {
+        "nodeId": 16,
+        "text": "你放下瓶子。不值得冒险。你继续探索，但喉咙越来越干。嘴唇开始裂开。你开始后悔没有喝那瓶液体。但现在你已经走远了，不记得那个房间在哪里。你只能[[继续前进]]。",
+        "choices": [
+          {"id": "c16_1", "text": "继续前进"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "探索"]
+      }
+    },
+    {
+      "id": "17",
+      "type": "storyNode",
+      "position": {"x": 5600, "y": 500},
+      "data": {
+        "nodeId": 17,
+        "text": "你不知道走了多久。手表显示过了几个小时。但荧光灯依然明亮。没有变暗。没有日落。没有黑暗。**这里没有夜晚**。你的身体开始疲惫。你需要休息。你找了一个墙角，背靠墙壁坐下。你决定[[闭眼休息]]10分钟。就10分钟。",
+        "choices": [
+          {"id": "c17_1", "text": "闭眼休息"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "探索"]
+      }
+    },
+    {
+      "id": "18",
+      "type": "storyNode",
+      "position": {"x": 6100, "y": 500},
+      "data": {
+        "nodeId": 18,
+        "text": "闭上眼睛后的第5分钟，你听到了。**脚步声**。远处。像是...赤脚踩在湿地毯上的声音。你睁开眼睛，屏住呼吸。脚步声在接近。拍拍拍的声音。规律的，缓慢的。你向声音传来的方向看去——走廊尽头，转角处。但什么都没有。脚步声停止了。寂静。然后——**更近**。就在转角后面。你可以[[呼喊]]，[[躲进附近的房间]]，或者[[站起来后退]]。",
+        "choices": [
+          {"id": "c18_1", "text": "呼喊"},
+          {"id": "c18_2", "text": "躲进附近的房间"},
+          {"id": "c18_3", "text": "站起来后退"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "遭遇"]
+      }
+    },
+    {
+      "id": "19",
+      "type": "storyNode",
+      "position": {"x": 6600, "y": 200},
+      "data": {
+        "nodeId": 19,
+        "text": "『谁在那里？！』你喊道。你的声音在走廊中回荡。脚步声停止了。完全的寂静。一秒。两秒。三秒。什么都没有。你等了一分钟。还是什么都没有。也许是你的幻觉。也许是疲劳导致的幻听。你决定[[继续探索]]。",
+        "choices": [
+          {"id": "c19_1", "text": "继续探索"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "遭遇"]
+      }
+    },
+    {
+      "id": "20",
+      "type": "storyNode",
+      "position": {"x": 6600, "y": 500},
+      "data": {
+        "nodeId": 20,
+        "text": "你快速移动到附近的小房间，躲在墙后。脚步声继续。拍拍拍的声音。越来越近。然后...它经过了你藏身的房间。你透过门缝向外看——走廊里什么都没有。但脚步声还在继续，渐渐远去。你可以[[等待它完全消失]]，或者[[出去查看]]。",
+        "choices": [
+          {"id": "c20_1", "text": "等待它完全消失"},
+          {"id": "c20_2", "text": "出去查看"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "遭遇"]
+      }
+    },
+    {
+      "id": "21",
+      "type": "storyNode",
+      "position": {"x": 6600, "y": 800},
+      "data": {
+        "nodeId": 21,
+        "text": "你站起来，慢慢后退。脚步声继续。拍拍拍的声音。越来越近。你保持眼睛盯着转角。然后——**它出现了**。你[[看清它的样子]]。",
+        "choices": [
+          {"id": "c21_1", "text": "看清它的样子"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "遭遇", "Smiler"]
+      }
+    },
+    {
+      "id": "22",
+      "type": "storyNode",
+      "position": {"x": 7100, "y": 500},
+      "data": {
+        "nodeId": 22,
+        "text": "你等了十分钟。脚步声完全消失了。你小心地走出房间。走廊是空的。但你知道，这里不只有你。还有...其他东西。你[[继续探索，更加小心]]。",
+        "choices": [
+          {"id": "c22_1", "text": "继续探索，更加小心"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "遭遇"]
+      }
+    },
+    {
+      "id": "23",
+      "type": "storyNode",
+      "position": {"x": 7100, "y": 800},
+      "data": {
+        "nodeId": 23,
+        "text": "[color=yellow]黑暗中，一对发光的眼睛[/color]。椭圆形的。[color=yellow]下方是一排牙齿组成的笑容[/color]。它在盯着你。你的手电筒在口袋里。（什么时候有的？你不记得了，但它就在那里）那个笑容没有移动。只是盯着你。笑着。你感到极度恐惧。你可以[[打开手电筒照向它]]，[[慢慢后退]]，或者[[转身奔跑]]。",
+        "choices": [
+          {"id": "c23_1", "text": "打开手电筒照向它"},
+          {"id": "c23_2", "text": "慢慢后退"},
+          {"id": "c23_3", "text": "转身奔跑"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "遭遇", "Smiler"]
+      }
+    },
+    {
+      "id": "24",
+      "type": "storyNode",
+      "position": {"x": 7600, "y": 200},
+      "data": {
+        "nodeId": 24,
+        "text": "你打开手电筒，光束直射那个笑容。那个东西的眼睛和笑容骤然熄灭。它...消失了。你听到空气中传来微弱的嘶声，然后是寂静。**光线可以驱散它**。你记住了这一点。你[[继续探索]]。",
+        "choices": [
+          {"id": "c24_1", "text": "继续探索"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "遭遇", "Smiler"]
+      }
+    },
+    {
+      "id": "25",
+      "type": "storyNode",
+      "position": {"x": 7600, "y": 500},
+      "data": {
+        "nodeId": 25,
+        "text": "你保持眼神接触，慢慢后退。那个笑容没有移动，只是盯着你。一步...两步...三步...你转过拐角，脱离它的视线。你加速离开，不敢回头。你的心跳还在加速。那个笑容...你会记住的。你[[继续探索]]。",
+        "choices": [
+          {"id": "c25_1", "text": "继续探索"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "遭遇", "Smiler"]
+      }
+    },
+    {
+      "id": "26",
+      "type": "storyNode",
+      "position": {"x": 7600, "y": 800},
+      "data": {
+        "nodeId": 26,
+        "text": "你转身就跑。全速冲刺。走廊、转角、走廊、转角——你不敢回头。跑了5分钟，你终于停下，靠在墙上大口喘气。回头看，什么都没有。你...逃掉了？但你不知道那是什么。也不知道下次怎么对付它。你[[休息后继续]]。",
+        "choices": [
+          {"id": "c26_1", "text": "休息后继续"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "遭遇", "Smiler"]
+      }
+    },
+    {
+      "id": "27",
+      "type": "storyNode",
+      "position": {"x": 8100, "y": 500},
+      "data": {
+        "nodeId": 27,
+        "text": "你继续探索。又过了很久——也许几个小时？你在墙上看到了一些涂鸦。用红色记号笔写的：\n\n> ⚠️ 不要相信人声\n> ⚠️ 不要触摸异常墙面  \n> ⚠️ 保持移动\n> ⚠️ 寻找混凝土墙壁\n\n**寻找混凝土墙壁**？那是什么意思？你[[记住这些建议，继续]]。",
+        "choices": [
+          {"id": "c27_1", "text": "记住这些建议，继续"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "探索"]
+      }
+    },
+    {
+      "id": "28",
+      "type": "storyNode",
+      "position": {"x": 8600, "y": 500},
+      "data": {
+        "nodeId": 28,
+        "text": "你又走了很久。突然，你注意到墙壁的变化。不再是黄色墙纸。是**灰色的混凝土**。粗糙的、冰冷的混凝土墙壁。这就是留言说的『混凝土墙壁』？你摸了摸墙面。很结实。但是...你感觉到了什么。一种奇怪的感觉。像是墙壁在...震动？你可以[[试着推墙]]，或者[[触摸墙壁，集中注意力]]。",
+        "choices": [
+          {"id": "c28_1", "text": "试着推墙"},
+          {"id": "c28_2", "text": "触摸墙壁，集中注意力"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "出口"]
+      }
+    },
+    {
+      "id": "29",
+      "type": "storyNode",
+      "position": {"x": 9100, "y": 300},
+      "data": {
+        "nodeId": 29,
+        "text": "你用力推墙。没有反应。墙壁纹丝不动。你更用力地推。还是没有反应。也许这不是正确的方法。你决定[[换个方式尝试]]。",
+        "choices": [
+          {"id": "c29_1", "text": "换个方式尝试"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "出口"]
+      }
+    },
+    {
+      "id": "30",
+      "type": "storyNode",
+      "position": {"x": 9100, "y": 700},
+      "data": {
+        "nodeId": 30,
+        "text": "你闭上眼睛，手掌贴在墙上。集中注意力。那种震动感更明显了。不是物理的震动，是...更深层的东西。你想起了进入这里的感觉。踩空。穿过。**Noclip**。你深吸一口气，向前走——不是推墙，而是**穿过去**。你感觉到了那种熟悉的感觉。视野闪烁。晕眩。然后——**你穿过了墙壁**。你[[睁开眼睛]]。",
+        "choices": [
+          {"id": "c30_1", "text": "睁开眼睛"}
+        ],
+        "nodeType": "normal",
+        "tags": ["Level0", "出口"]
+      }
+    }
+  ],
+  "edges": [
+    {"id": "e1-2", "source": "1", "target": "2", "sourceHandle": "c1_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e2-3", "source": "2", "target": "3", "sourceHandle": "c2_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e3-4", "source": "3", "target": "4", "sourceHandle": "c3_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e3-5", "source": "3", "target": "5", "sourceHandle": "c3_2", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e4-6", "source": "4", "target": "6", "sourceHandle": "c4_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e5-6", "source": "5", "target": "6", "sourceHandle": "c5_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e6-7", "source": "6", "target": "7", "sourceHandle": "c6_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e6-8", "source": "6", "target": "8", "sourceHandle": "c6_2", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e7-13", "source": "7", "target": "13", "sourceHandle": "c7_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e8-9", "source": "8", "target": "9", "sourceHandle": "c8_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e8-10", "source": "8", "target": "10", "sourceHandle": "c8_2", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e9-13", "source": "9", "target": "13", "sourceHandle": "c9_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e10-11", "source": "10", "target": "11", "sourceHandle": "c10_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e10-12", "source": "10", "target": "12", "sourceHandle": "c10_2", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e11-13", "source": "11", "target": "13", "sourceHandle": "c11_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e12-17", "source": "12", "target": "17", "sourceHandle": "c12_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e12-13", "source": "12", "target": "13", "sourceHandle": "c12_2", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e13-14", "source": "13", "target": "14", "sourceHandle": "c13_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e14-15", "source": "14", "target": "15", "sourceHandle": "c14_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e14-16", "source": "14", "target": "16", "sourceHandle": "c14_2", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e15-17", "source": "15", "target": "17", "sourceHandle": "c15_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e16-17", "source": "16", "target": "17", "sourceHandle": "c16_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e17-18", "source": "17", "target": "18", "sourceHandle": "c17_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e18-19", "source": "18", "target": "19", "sourceHandle": "c18_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e18-20", "source": "18", "target": "20", "sourceHandle": "c18_2", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e18-21", "source": "18", "target": "21", "sourceHandle": "c18_3", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e19-27", "source": "19", "target": "27", "sourceHandle": "c19_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e20-22", "source": "20", "target": "22", "sourceHandle": "c20_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e20-23", "source": "20", "target": "23", "sourceHandle": "c20_2", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e21-23", "source": "21", "target": "23", "sourceHandle": "c21_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e22-27", "source": "22", "target": "27", "sourceHandle": "c22_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e23-24", "source": "23", "target": "24", "sourceHandle": "c23_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e23-25", "source": "23", "target": "25", "sourceHandle": "c23_2", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e23-26", "source": "23", "target": "26", "sourceHandle": "c23_3", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e24-27", "source": "24", "target": "27", "sourceHandle": "c24_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e25-27", "source": "25", "target": "27", "sourceHandle": "c25_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e26-27", "source": "26", "target": "27", "sourceHandle": "c26_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e27-28", "source": "27", "target": "28", "sourceHandle": "c27_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e28-29", "source": "28", "target": "29", "sourceHandle": "c28_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e28-30", "source": "28", "target": "30", "sourceHandle": "c28_2", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false},
+    {"id": "e29-30", "source": "29", "target": "30", "sourceHandle": "c29_1", "markerEnd": {"type": "ArrowClosed", "width": 20, "height": 20, "color": "#6366f1"}, "style": {"stroke": "#6366f1", "strokeWidth": 2.5}, "type": "default", "animated": false}
+  ],
+  "variables": [],
+  "createdAt": "2025-11-01T16:00:00.000Z",
+  "updatedAt": "2025-11-01T16:00:00.000Z"
+}

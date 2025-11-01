@@ -11,7 +11,7 @@ export class VNPixelStylePlugin extends PluginBase {
     id: 'vn-style.pixel',
     name: '视觉小说像素风格',
     version: '1.0.0',
-    author: '系统',
+    author: '墨水官方',
     description: '复古像素艺术风格，8-bit美学，适合复古/像素游戏',
     icon: 'VN',
     category: 'enhance',

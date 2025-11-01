@@ -11,7 +11,7 @@ export class DarkTerminalStylePlugin extends PluginBase {
     id: 'player-style.dark-terminal',
     name: '黑色终端风格',
     version: '1.0.0',
-    author: '系统',
+    author: '墨水官方',
     description: '经典黑色终端，绿色系统信息，适合技术向作品',
     icon: 'DARK',
     category: 'enhance',

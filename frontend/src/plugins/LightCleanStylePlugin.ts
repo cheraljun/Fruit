@@ -11,7 +11,7 @@ export class LightCleanStylePlugin extends PluginBase {
     id: 'player-style.light-clean',
     name: '白色简洁风格',
     version: '1.0.0',
-    author: '系统',
+    author: '墨水官方',
     description: '明亮白色背景，深色文字，适合阅读向作品',
     icon: 'LIGHT',
     category: 'enhance',

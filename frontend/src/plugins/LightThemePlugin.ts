@@ -12,7 +12,7 @@ export class LightThemePlugin extends ThemePlugin {
     name: '日间模式',
     version: '1.0.0',
     description: '明亮清晰的日间主题',
-    author: 'mo团队',
+    author: '墨水官方',
     category: 'theme',
     tags: ['浅色', '日间', '默认'],
     conflicts: ['theme.dark']

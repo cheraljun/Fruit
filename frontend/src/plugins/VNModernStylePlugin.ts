@@ -11,7 +11,7 @@ export class VNModernStylePlugin extends PluginBase {
     id: 'vn-style.modern',
     name: '视觉小说现代风格',
     version: '1.0.0',
-    author: '系统',
+    author: '墨水官方',
     description: '现代玻璃态设计，渐变色彩，适合科幻/现代题材',
     icon: 'VN',
     category: 'enhance',

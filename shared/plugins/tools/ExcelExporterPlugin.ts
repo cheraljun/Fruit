@@ -23,7 +23,7 @@ export class ExcelExporterPlugin extends PluginBase {
     id: 'tool.excel-exporter',
     name: 'Excel导入/导出',
     version: '1.0.0',
-    author: '系统',
+    author: '墨水官方',
     description: '将Story转换为Excel格式，支持批量编辑和协作',
     category: 'tool',
     tags: ['工具', '导入', '导出', 'Excel']

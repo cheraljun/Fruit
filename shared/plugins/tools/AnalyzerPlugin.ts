@@ -14,7 +14,7 @@ export class AnalyzerPlugin extends PluginBase {
     id: 'tool.analyzer',
     name: '故事分析器',
     version: '1.0.0',
-    author: '系统',
+    author: '墨水官方',
     description: '分析故事拓扑结构、深度、循环、关键决策点',
     icon: 'STAT',
     category: 'tool',

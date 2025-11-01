@@ -13,7 +13,7 @@ export class ValidatorPlugin extends PluginBase {
     id: 'tool.validator',
     name: '故事验证器',
     version: '1.0.0',
-    author: '系统',
+    author: '墨水官方',
     description: '检测孤立节点、死胡同、未连接选项等结构问题',
     icon: 'CHECK',
     category: 'tool',

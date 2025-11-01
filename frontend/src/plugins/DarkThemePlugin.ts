@@ -12,7 +12,7 @@ export class DarkThemePlugin extends ThemePlugin {
     name: '夜间模式',
     version: '1.0.0',
     description: '舒适护眼的夜间主题，适合长时间编辑',
-    author: 'mo团队',
+    author: '墨水官方',
     category: 'theme',
     tags: ['暗色', '夜间', '护眼'],
     conflicts: ['theme.light']

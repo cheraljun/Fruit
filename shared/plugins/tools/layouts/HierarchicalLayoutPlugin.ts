@@ -40,7 +40,7 @@ export class HierarchicalLayoutPlugin extends PluginBase {
     id: 'tool.layout.hierarchical',
     name: '层次布局',
     version: '1.0.0',
-    author: '系统',
+    author: '墨水官方',
     description: '按深度分层排列节点，适合线性故事和视觉小说',
     icon: 'LAY',
     category: 'tool',

@@ -21,7 +21,7 @@ export class BackroomsPlugin extends PluginBase {
     id: 'gamemod.backrooms',
     name: '后室',
     version: '1.0.0',
-    author: 'backrooms',
+    author: '墨水官方',
     description: '后室恐怖探索游戏的核心机制，包含理智系统、遭遇系统、物资管理',
     icon: 'BKRM',
     category: 'gamemod',

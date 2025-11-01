@@ -13,9 +13,9 @@ import type { Story } from '../../types/index.js';
 export const SURVIVAL_GAME_TEMPLATE: Story = {
   "id": "template_survival_game",
   "meta": {
-    "title": "新手教程：生存游戏（节点流）",
-    "author": "系统",
-    "description": "生存游戏示例，展示纯节点流的剧情分支和选择系统。40个节点，多个结局。改编自经典互动小说。",
+    "title": "教学关卡：生存游戏（节点流）",
+    "author": "墨水官方",
+    "description": "叙事游戏开发实例，展示纯节点流的剧情分支和选择系统。40个节点，多个结局。改编自经典互动小说。",
     "start_node": 1,
     "displayMode": "visual-novel"
   },
@@ -26,7 +26,7 @@ export const SURVIVAL_GAME_TEMPLATE: Story = {
       "position": { "x": 100, "y": 500 },
       "data": {
         "nodeId": 1,
-        "text": "你名叫克丽丝，是一名冒险家，正驾驶热气球飞越落基山脉进行探险考察。突然，燃烧器发出了奇怪的响声然后熄灭，热气球开始快速下降。你的通讯设备失灵了，没有人知道你所在的位置。[[继续]]",
+        "text": "你名叫爱丽丝，是一名冒险家，正驾驶热气球飞越落基山脉进行探险考察。突然，燃烧器发出了奇怪的响声然后熄灭，热气球开始快速下降。你的通讯设备失灵了，没有人知道你所在的位置。[[继续]]",
         "choices": [{ "id": "c1_1", "text": "继续" }],
         "nodeType": "start"
       }

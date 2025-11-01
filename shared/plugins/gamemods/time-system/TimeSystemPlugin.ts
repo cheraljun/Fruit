@@ -21,7 +21,7 @@ export class TimeSystemPlugin extends PluginBase {
     id: 'gamemod.time-system',
     name: '时间',
     version: '1.0.0',
-    author: '系统',
+    author: '墨水官方',
     description: '提供时间流逝和显示功能，自动处理进位规则',
     icon: 'TIME',
     category: 'gamemod',

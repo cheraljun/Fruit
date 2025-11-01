@@ -35,7 +35,7 @@ app.get('/health', (_req, res) => {
 const userdataPath = process.env.USER_DATA_PATH || path.join(process.cwd(), 'userdata');
 app.use('/userdata', express.static(userdataPath));
 
-// 路由（作者工作区系统）
+// 路由
 app.use(`${config.api.prefix}`, authorRouter);
 
 // 桌面模式：提供前端静态文件服务

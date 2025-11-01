@@ -11,7 +11,7 @@ export class VNClassicStylePlugin extends PluginBase {
     id: 'vn-style.classic',
     name: '视觉小说经典风格',
     version: '1.0.0',
-    author: '系统',
+    author: '墨水官方',
     description: '传统Galgame对话框样式，半透明黑底，适合大部分作品',
     icon: 'VN',
     category: 'enhance',
