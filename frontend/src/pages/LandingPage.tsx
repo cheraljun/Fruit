@@ -33,7 +33,7 @@ function LandingPage(): JSX.Element {
     <div className="landing-twine">
       <div className="landing-twine-container">
         <div className="landing-twine-logo">
-          <div className="logo-text">免费好用的互动小说编辑器</div>
+          <div className="logo-text">墨水</div>
         </div>
 
         <MarkdownViewer 
