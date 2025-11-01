@@ -21,7 +21,7 @@ export class DarkTerminalStylePlugin extends PluginBase {
   };
 
   config = {
-    enabled: true,
+    enabled: false,
     settings: {}
   };
 

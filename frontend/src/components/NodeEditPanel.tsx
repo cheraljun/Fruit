@@ -3,7 +3,7 @@
  * 职责：编辑单个节点的内容，实时保存
  */
 
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo, forwardRef, useImperativeHandle } from 'react';
 import type { StoryNode, StoryMeta, Choice, NodeType, NodeImage, CharacterImages, BlocklyWorkspaceState, NodeScripts } from '../../../shared/types/index.ts';
 import { processImageFile, formatFileSize, validateImageFile } from '../utils/imageProcessor.ts';
 import { useTheme } from '../contexts/ThemeContext.tsx';
@@ -24,9 +24,14 @@ interface NodeEditPanelProps {
   storyMeta: StoryMeta;
 }
 
+// 暴露给父组件的方法接口
+export interface NodeEditPanelRef {
+  applyChanges: () => void;
+}
+
 // TODO: 将来会用 Blockly 编辑器替代这里的高级功能
 
-function NodeEditPanel({ node, allNodes, onUpdate, onClose, onDeleteChoice, globalVariables = [], storyMeta }: NodeEditPanelProps): JSX.Element {
+const NodeEditPanel = forwardRef<NodeEditPanelRef, NodeEditPanelProps>(({ node, allNodes, onUpdate, onClose, onDeleteChoice, globalVariables = [], storyMeta }, ref) => {
   const { currentTheme } = useTheme();
   const isDark = currentTheme === 'theme.dark';
   const pluginSystem = usePluginSystem();
@@ -42,7 +47,6 @@ function NodeEditPanel({ node, allNodes, onUpdate, onClose, onDeleteChoice, glob
   const [deleteConfirmIndex, setDeleteConfirmIndex] = useState<number>(-1);
   const [uploading, setUploading] = useState<boolean>(false);
   const [uploadingCharacter, setUploadingCharacter] = useState<string | null>(null);
-  const [nodeSaved, setNodeSaved] = useState<boolean>(false);
   const [showPreview, setShowPreview] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const characterFileInputRefs = {
@@ -175,13 +179,18 @@ function NodeEditPanel({ node, allNodes, onUpdate, onClose, onDeleteChoice, glob
     } as any;
   };
 
+  // 暴露方法给父组件（用于保存前自动应用更改）
+  useImperativeHandle(ref, () => ({
+    applyChanges: () => {
+      const nodeData = buildNodeData();
+      onUpdate(node.id, nodeData);
+    }
+  }), [node.id, onUpdate, text, choices, nodeType, nodeImage, characterImages, tags, typewriterSpeed, nodeScripts, hotspots]);
+
   // 应用更改到全局状态（内存），不持久化到后端
   const handleSave = (): void => {
     const nodeData = buildNodeData();
     onUpdate(node.id, nodeData);
-    
-    setNodeSaved(true);
-    setTimeout(() => setNodeSaved(false), 2000);
   };
 
   // 关闭面板时自动应用更改到全局状态
@@ -1295,28 +1304,6 @@ function NodeEditPanel({ node, allNodes, onUpdate, onClose, onDeleteChoice, glob
             dangerouslySetInnerHTML={{ __html: renderedHTML }}
           />
         </details>
-
-        <div style={{ 
-          marginTop: '24px', 
-          paddingTop: '16px', 
-          borderTop: isDark ? '1px solid #334155' : '1px solid #e5e7eb',
-          display: 'flex',
-          justifyContent: 'flex-end',
-          gap: '12px'
-        }}>
-          <button 
-            onClick={handleSave}
-            disabled={nodeSaved}
-            className="btn btn-secondary"
-            style={{
-              padding: '10px 24px',
-              fontSize: '0.95rem'
-            }}
-            title="暂存到编辑器，记得在侧边栏点击'保存'以持久化"
-          >
-            {nodeSaved ? '已暂存' : '暂存'}
-          </button>
-        </div>
         </div>
       </DraggableWindow>
 
@@ -1437,27 +1424,12 @@ function NodeEditPanel({ node, allNodes, onUpdate, onClose, onDeleteChoice, glob
               >
                 {deleteScriptConfirm ? '确认删除？' : '删除脚本'}
               </button>
-              <button
-                onClick={() => {
-                  handleSave();
-                }}
-                disabled={nodeSaved}
-                className="btn btn-secondary"
-                style={{
-                  flex: 1,
-                  padding: '10px 20px',
-                  fontSize: '0.95rem'
-                }}
-                title="暂存到编辑器，记得在侧边栏点击'保存'以持久化"
-              >
-                {nodeSaved ? '已暂存' : '暂存'}
-              </button>
             </div>
           </div>
         </DraggableWindow>
       )}
     </>
   );
-}
+});
 
 export default NodeEditPanel;

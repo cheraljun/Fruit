@@ -20,7 +20,7 @@ import { guestStorage } from '../services/GuestStorage.ts';
 import { usePluginSystem } from '../contexts/PluginContext.tsx';
 import StoryNode from '../components/StoryNode.tsx';
 import EditorSidebar from '../components/EditorSidebar.tsx';
-import NodeEditPanel from '../components/NodeEditPanel.tsx';
+import NodeEditPanel, { type NodeEditPanelRef } from '../components/NodeEditPanel.tsx';
 import EdgeEditPanel from '../components/EdgeEditPanel.tsx';
 import Loading from '../components/ui/Loading.tsx';
 import notification from '../utils/notification.ts';
@@ -51,6 +51,7 @@ function Editor(): JSX.Element {
   const editor = useStoryEditor();
   const editorRef = useRef(editor);
   editorRef.current = editor;
+  const nodeEditPanelRef = useRef<NodeEditPanelRef>(null);
 
   const pureNodes = useMemo(() => {
     return editor.nodes.map(node => ({
@@ -150,6 +151,11 @@ function Editor(): JSX.Element {
 
   const handleSave = useCallback(async (showNotification: boolean = true): Promise<boolean> => {
     if (!id || saving || loading) return false;
+    
+    // 保存前自动应用右侧面板的未暂存修改
+    if (editor.selectedNode && nodeEditPanelRef.current) {
+      nodeEditPanelRef.current.applyChanges();
+    }
     
     setSaving(true);
     const ed = editorRef.current;
@@ -508,6 +514,7 @@ function Editor(): JSX.Element {
 
       {editor.selectedNode && (
         <NodeEditPanel
+          ref={nodeEditPanelRef}
           node={editor.selectedNode}
           allNodes={pureNodes as any}
           onUpdate={editor.updateNodeData}

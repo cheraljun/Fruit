@@ -21,7 +21,7 @@ export class VNPixelStylePlugin extends PluginBase {
   };
 
   config = {
-    enabled: false,
+    enabled: true,
     settings: {}
   };
 
