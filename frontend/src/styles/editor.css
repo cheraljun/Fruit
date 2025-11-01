@@ -1041,3 +1041,27 @@
     opacity: 1;
   }
 }
+
+/* 侧边栏 - 标签过滤器 */
+.tag-filter-select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--theme-border);
+  border-radius: 6px;
+  background: var(--theme-background-primary);
+  color: var(--theme-text-primary);
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.tag-filter-select:hover {
+  border-color: var(--theme-brand-primary);
+  background: var(--theme-hover);
+}
+
+.tag-filter-select:focus {
+  border-color: var(--theme-border-focus);
+  box-shadow: 0 0 0 3px rgba(255, 109, 90, 0.1);
+}

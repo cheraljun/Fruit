@@ -46,6 +46,7 @@ function Editor(): JSX.Element {
   const [saving, setSaving] = useState<boolean>(false);
   const [analysisStatus, setAnalysisStatus] = useState<string>('');
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState<boolean>(false);
+  const [tagFilter, setTagFilter] = useState<string>('all');
 
   const editor = useStoryEditor();
   const editorRef = useRef(editor);
@@ -73,6 +74,41 @@ function Editor(): JSX.Element {
       style: edge.style
     }));
   }, [editor.edges]);
+
+  // 收集所有标签
+  const allTags = useMemo(() => {
+    const tags = new Set<string>();
+    editor.nodes.forEach(node => {
+      const nodeTags = (node.data as any).tags as string[] | undefined;
+      nodeTags?.forEach(tag => tags.add(tag));
+    });
+    
+    const result = ['all', ...Array.from(tags).sort()];
+    
+    // 检查是否有未分组节点
+    const hasUntagged = editor.nodes.some(n => {
+      const nodeTags = (n.data as any).tags as string[] | undefined;
+      return !nodeTags || nodeTags.length === 0;
+    });
+    if (hasUntagged) result.push('未分组');
+    
+    return result;
+  }, [editor.nodes]);
+
+  // 过滤函数
+  const filterNodesByTag = useCallback((nodes: any[]) => {
+    if (tagFilter === 'all') return nodes;
+    if (tagFilter === '未分组') {
+      return nodes.filter(n => {
+        const nodeTags = (n.data as any).tags as string[] | undefined;
+        return !nodeTags || nodeTags.length === 0;
+      });
+    }
+    return nodes.filter(n => {
+      const nodeTags = (n.data as any).tags as string[] | undefined;
+      return nodeTags?.includes(tagFilter);
+    });
+  }, [tagFilter]);
 
   const loadStory = useCallback(async () => {
     if (!id) return;
@@ -275,9 +311,12 @@ function Editor(): JSX.Element {
   }, [highlightNodeId, pureEdges]);
 
   const nodesWithAnalysis = useMemo(() => {
-    if (!storyAnalysis) return editor.nodes;
+    // 先应用标签过滤
+    const filteredNodes = filterNodesByTag(editor.nodes);
     
-    return editor.nodes.map(node => {
+    if (!storyAnalysis) return filteredNodes;
+    
+    return filteredNodes.map(node => {
       const isHighlighted = highlightedNodes.has(node.id);
       const nodeAnalysis = storyAnalysis.nodes?.get(node.id);
       
@@ -290,29 +329,35 @@ function Editor(): JSX.Element {
         }
       };
     });
-  }, [editor.nodes, storyAnalysis, highlightedNodes]);
+  }, [editor.nodes, storyAnalysis, highlightedNodes, filterNodesByTag]);
 
   const edgesWithHighlight = useMemo(() => {
-    return editor.edges.map(edge => {
-      const isHighlighted = highlightedNodes.has(edge.source) && highlightedNodes.has(edge.target);
-      
-      if (edge.type === 'attachment') {
+    // 获取可见节点的ID集合
+    const visibleNodeIds = new Set(nodesWithAnalysis.map(n => n.id));
+    
+    // 只保留source和target都在可见节点中的边
+    return editor.edges
+      .filter(edge => visibleNodeIds.has(edge.source) && visibleNodeIds.has(edge.target))
+      .map(edge => {
+        const isHighlighted = highlightedNodes.has(edge.source) && highlightedNodes.has(edge.target);
+        
+        if (edge.type === 'attachment') {
+          return {
+            ...edge,
+            animated: isHighlighted,
+            style: {
+              ...edge.style,
+              strokeDasharray: '5,5',
+            }
+          };
+        }
+        
         return {
           ...edge,
           animated: isHighlighted,
-          style: {
-            ...edge.style,
-            strokeDasharray: '5,5',
-          }
         };
-      }
-      
-      return {
-        ...edge,
-        animated: isHighlighted,
-      };
-    });
-  }, [editor.edges, highlightedNodes]);
+      });
+  }, [editor.edges, highlightedNodes, nodesWithAnalysis]);
 
   const onNodeClick: NodeMouseHandler = useCallback((_event, node) => {
     editor.setSelectedNode(node as any);
@@ -403,13 +448,12 @@ function Editor(): JSX.Element {
         onJumpToNode={handleJumpToNode}
         onBackToDashboard={() => navigate('/app')}
         onPlay={() => navigate(`/play/${id}`)}
-        onOpenPlugins={() => navigate('/plugins')}
         hasSelectedNode={!!editor.selectedNode}
         saving={saving}
         hasUnsavedChanges={hasUnsavedChanges}
         validationResult={validationResult}
         nodeCount={editor.nodes.length}
-        allNodes={pureNodes.map(node => ({
+        allNodes={filterNodesByTag(pureNodes).map(node => ({
           id: node.id,
           nodeId: node.data.nodeId,
           nodeType: node.data.nodeType,
@@ -423,6 +467,9 @@ function Editor(): JSX.Element {
         onRedo={editor.redo}
         canUndo={editor.canUndo}
         canRedo={editor.canRedo}
+        tagFilter={tagFilter}
+        allTags={allTags}
+        onTagFilterChange={setTagFilter}
       />
 
       <div className="editor-canvas">
@@ -462,7 +509,7 @@ function Editor(): JSX.Element {
       {editor.selectedNode && (
         <NodeEditPanel
           node={editor.selectedNode}
-          allNodes={editor.nodes}
+          allNodes={pureNodes as any}
           onUpdate={editor.updateNodeData}
           onClose={() => editor.setSelectedNode(null)}
           onDeleteChoice={editor.deleteChoice}

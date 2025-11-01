@@ -38,7 +38,6 @@ interface EditorSidebarProps {
   onJumpToNode: (nodeId: string) => void;
   onBackToDashboard: () => void;
   onPlay: () => void;
-  onOpenPlugins: () => void;
   hasSelectedNode: boolean;
   saving: boolean;
   hasUnsavedChanges: boolean;
@@ -51,6 +50,9 @@ interface EditorSidebarProps {
   onRedo: () => void;
   canUndo: boolean;
   canRedo: boolean;
+  tagFilter: string;
+  allTags: string[];
+  onTagFilterChange: (tag: string) => void;
 }
 
 function EditorSidebar({ 
@@ -69,7 +71,6 @@ function EditorSidebar({
   onJumpToNode,
   onBackToDashboard,
   onPlay,
-  onOpenPlugins,
   hasSelectedNode,
   saving,
   hasUnsavedChanges,
@@ -81,7 +82,10 @@ function EditorSidebar({
   onUndo,
   onRedo,
   canUndo,
-  canRedo
+  canRedo,
+  tagFilter,
+  allTags,
+  onTagFilterChange
 }: EditorSidebarProps): JSX.Element {
   const { currentTheme } = useTheme();
   const isDark = currentTheme === 'theme.dark';
@@ -173,11 +177,27 @@ function EditorSidebar({
               <option value="visual-novel">视觉小说模式</option>
             </select>
           </div>
+
+          {allTags.length > 1 && (
+            <div className="form-group">
+              <label>分组</label>
+              <select 
+                value={tagFilter} 
+                onChange={(e) => onTagFilterChange(e.target.value)}
+                className="tag-filter-select"
+              >
+                {allTags.map(tag => (
+                  <option key={tag} value={tag}>{tag}</option>
+                ))}
+              </select>
+            </div>
+          )}
         </div>
 
-        {/* 1. 操作 */}
+        {/* 节点操作 */}
         <div className="section">
-          <h3>操作</h3>
+          <h3>节点操作 <span className="node-count-badge">({nodeCount}个)</span></h3>
+          
           <button 
             className="btn btn-primary" 
             onClick={onSave}
@@ -215,11 +235,7 @@ function EditorSidebar({
           >
             播放
           </button>
-        </div>
 
-        {/* 2. 节点 */}
-        <div className="section">
-          <h3>节点 <span className="node-count-badge">({nodeCount}个)</span></h3>
           <div className="node-creation-buttons">
             <button className="btn btn-primary" onClick={onAddNode}>
               + 添加节点
@@ -305,15 +321,42 @@ function EditorSidebar({
           </div>
         </div>
 
-        {/* 3. 撤销/重做 */}
+        {/* 角色 */}
         <div className="section">
-          <h3>撤销/重做</h3>
+          <CharacterManager
+            characters={storyMeta.characters || []}
+            onCharactersChange={(newCharacters) => {
+              onMetaChange({ ...storyMeta, characters: newCharacters });
+            }}
+            allNodesText={allNodes.map(n => n.text)}
+          />
+        </div>
+
+        {/* 变量 */}
+        <div className="section">
+          <VariableManager
+            variables={variables}
+            onVariablesChange={onVariablesChange}
+          />
+        </div>
+
+        {/* 脚本助手 */}
+        <ScriptHelper 
+          variables={variables}
+          characters={storyMeta.characters || []}
+          onVariablesChange={onVariablesChange}
+        />
+
+        {/* 工具 */}
+        <div className="section">
+          <h3>工具</h3>
+          
           <div className="history-buttons">
             <button 
               className="btn btn-secondary"
               onClick={onUndo}
               disabled={!canUndo}
-              title="撤销上一步删除操作"
+              title="撤销"
             >
               ↶ 撤销
             </button>
@@ -326,30 +369,7 @@ function EditorSidebar({
               ↷ 重做
             </button>
           </div>
-        </div>
 
-        {/* 4. 角色 */}
-        <div className="section">
-          <CharacterManager
-            characters={storyMeta.characters || []}
-            onCharactersChange={(newCharacters) => {
-              onMetaChange({ ...storyMeta, characters: newCharacters });
-            }}
-            allNodesText={allNodes.map(n => n.text)}
-          />
-        </div>
-
-        {/* 5. 变量 */}
-        <div className="section">
-          <VariableManager
-            variables={variables}
-            onVariablesChange={onVariablesChange}
-          />
-        </div>
-
-        {/* 6. 布局 */}
-        <div className="section">
-          <h3>布局</h3>
           <button 
             className="btn btn-secondary"
             onClick={() => onAutoLayout('hierarchical')}
@@ -362,23 +382,9 @@ function EditorSidebar({
           >
             辐射布局
           </button>
-        </div>
 
-        {/* 7. 脚本助手 */}
-        <ScriptHelper 
-          variables={variables}
-          characters={storyMeta.characters || []}
-          onVariablesChange={onVariablesChange}
-        />
-
-        {/* 8. 工具 */}
-        <div className="section">
-          <h3>工具</h3>
           <button className="btn btn-secondary" onClick={onValidate}>
             验证故事
-          </button>
-          <button className="btn btn-secondary" onClick={onOpenPlugins}>
-            插件商店
           </button>
         </div>
 
