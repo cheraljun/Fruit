@@ -1,0 +1,65 @@
+.start-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20000;
+}
+
+.start-screen-content {
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+  color: #ffffff;
+}
+
+.start-screen-title {
+  font-size: 32px;
+  font-weight: 500;
+  margin: 0 0 12px 0;
+  color: #ffffff;
+}
+
+.start-screen-author {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 32px;
+}
+
+.start-screen-description {
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 48px;
+  text-align: left;
+  white-space: pre-wrap;
+}
+
+.start-screen-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.start-screen-buttons button {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  padding: 14px 60px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 200px;
+}
+
+.start-screen-buttons button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+

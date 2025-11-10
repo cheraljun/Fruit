@@ -1,0 +1,360 @@
+/**
+ * 视觉小说播放器样式
+ * 职责：视觉小说风格UI布局和动画
+ */
+
+.vn-player {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  background: #000;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 
+    'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+}
+
+.vn-menu-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  padding: 8px 16px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.2s;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vn-menu-button:hover {
+  background: rgba(0, 0, 0, 0.9);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.vn-world-map {
+  position: absolute;
+  top: 12px;
+  left: 20px;
+  z-index: 150;
+}
+
+.vn-world-map-toggle {
+  color: var(--theme-brand-primary, #5bc0de);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-weight: 500;
+  font-size: 0.9em;
+  user-select: none;
+  display: inline-block;
+}
+
+.vn-world-map-toggle:hover {
+  color: #fff;
+}
+
+.vn-world-map-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  z-index: 300;
+}
+
+.vn-world-map-list a {
+  display: block;
+  color: var(--theme-brand-primary, #5bc0de);
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.9em;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.vn-world-map-list a:hover {
+  color: #fff;
+}
+
+.vn-world-map-list a.current {
+  color: #fbbf24;
+  font-weight: 600;
+}
+
+.vn-variables {
+  position: absolute;
+  top: 12px;
+  left: 110px;
+  z-index: 150;
+}
+
+.vn-variables-toggle {
+  color: var(--theme-brand-primary, #5bc0de);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-weight: 500;
+  font-size: 0.9em;
+  user-select: none;
+  display: inline-block;
+}
+
+.vn-variables-toggle:hover {
+  color: #fff;
+}
+
+.vn-variables-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  z-index: 300;
+}
+
+.vn-variable-item {
+  display: block;
+  color: var(--theme-brand-primary, #5bc0de);
+  text-decoration: none;
+  transition: all 0.2s;
+  user-select: none;
+  font-size: 0.9em;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.vn-help {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  z-index: 150;
+}
+
+.vn-help-toggle {
+  color: var(--theme-brand-primary, #5bc0de);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-weight: 500;
+  font-size: 0.9em;
+  user-select: none;
+  display: inline-block;
+}
+
+.vn-help-toggle:hover {
+  color: #fff;
+}
+
+.vn-help-list {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  z-index: 300;
+}
+
+.vn-help-list a {
+  display: block;
+  color: var(--theme-brand-primary, #5bc0de);
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-align: right;
+}
+
+.vn-help-list a:hover {
+  color: #fff;
+}
+
+.vn-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.8);
+  animation: fadeIn 0.5s ease-in;
+  z-index: 1;
+}
+
+.vn-dialogue-container {
+  /* 位置由内联样式控制 */
+}
+
+.vn-character-images {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 16px;
+  width: 100%;
+  padding: 0 5%;
+}
+
+.vn-character-slot {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  min-height: 1px;
+}
+
+.vn-character-slot-left {
+  justify-content: flex-start;
+}
+
+.vn-character-slot-center {
+  justify-content: center;
+}
+
+.vn-character-slot-right {
+  justify-content: flex-end;
+}
+
+.vn-character-image {
+  max-height: calc(50vh - 40px);
+  max-width: 280px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.5));
+  animation: fadeIn 0.4s ease-in;
+}
+
+.vn-dialogue-box {
+  /* 大小、背景、圆角、内边距由内联样式控制 */
+  animation: slideUp 0.3s ease-out;
+}
+
+.vn-text {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #ffffff;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.vn-text strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.vn-text em {
+  font-style: italic;
+  color: #e0e0e0;
+}
+
+.vn-text .choice-embed-link {
+  color: var(--theme-brand-primary, #FF6D5A);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.vn-text .choice-embed-link:hover {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 109, 90, 0.8);
+}
+
+.vn-text .dialogue {
+  margin: 0.5em 0;
+  line-height: 1.8;
+}
+
+.vn-text .character-name {
+  font-weight: 700;
+  margin-right: 0.5em;
+  font-size: 1.05em;
+}
+
+.vn-text .character-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 12px;
+  vertical-align: middle;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.vn-feedback {
+  margin-top: 16px;
+  padding: 8px 12px;
+  background: rgba(91, 192, 222, 0.15);
+  color: var(--theme-brand-primary, #5bc0de);
+  font-size: 0.95rem;
+  border-radius: 4px;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.vn-choices {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.vn-choice-link {
+  flex: 1;
+  text-align: center;
+  color: #666;
+  font-size: 0.95em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.vn-choice-link:hover {
+  color: #5bc0de;
+  text-shadow: 0 0 8px rgba(91, 192, 222, 0.6);
+}
+
+.vn-game-over {
+  position: absolute;
+  bottom: 300px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 3;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.vn-game-over-text {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 16px;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.vn-game-over-hint {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

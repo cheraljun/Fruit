@@ -1,0 +1,473 @@
+/**
+ * 作品管理页面样式
+ */
+
+.dashboard {
+  width: 100%;
+  min-height: 100vh;
+  padding: 40px 20px;
+  position: relative;
+  background: #ffffff;
+}
+
+.dashboard.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #FF6D5A;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.dashboard-header h1 {
+  font-size: 42px;
+  background: linear-gradient(135deg, #FF6D5A 0%, #FF9472 50%, #FFB088 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0;
+}
+
+.dashboard-user {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.dashboard-user .user-name {
+  color: #64748b;
+}
+
+.dashboard-user button {
+  background: none;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.dashboard-user button:hover {
+  color: #FF6D5A;
+  text-decoration: underline;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #64748b;
+}
+
+.dashboard-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.actions,
+.dashboard-actions {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.actions .btn,
+.dashboard-actions .btn,
+.dashboard-actions button {
+  width: auto;
+  min-width: 200px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+  font-size: 16px;
+  min-height: 300px;
+}
+
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.story-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(212, 212, 212, 0.5);
+  border-radius: 16px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.story-card:hover {
+  box-shadow: 0 8px 24px rgba(255, 109, 90, 0.15);
+  border-color: #FF6D5A;
+}
+
+.story-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.story-card h3 {
+  font-size: 20px;
+  color: #FF6D5A;
+  margin-bottom: 8px;
+}
+
+.story-card-header h3 {
+  font-size: 20px;
+  color: #FF6D5A;
+  flex: 1;
+  margin-right: 10px;
+}
+
+.btn-delete-small {
+  background: rgba(254, 226, 226, 0.8);
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  font-size: 18px;
+  color: #dc2626;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.btn-delete-small:hover {
+  background: rgba(254, 202, 202, 0.9);
+}
+
+.story-description,
+.story-desc {
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  min-height: 40px;
+}
+
+.story-meta {
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.story-stats {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(212, 212, 212, 0.5);
+}
+
+.story-stats span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.story-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-icon {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(212, 212, 212, 0.5);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #525252;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 500;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.btn-icon:hover {
+  background: rgba(249, 250, 251, 0.8);
+  border-color: #FF6D5A;
+  box-shadow: 0 4px 12px rgba(255, 109, 90, 0.15);
+}
+
+.btn-icon.btn-danger {
+  background: rgba(254, 226, 226, 0.6);
+  border-color: rgba(252, 165, 165, 0.5);
+  color: #dc2626;
+}
+
+.btn-icon.btn-danger:hover {
+  background: rgba(254, 202, 202, 0.8);
+  border-color: rgba(248, 113, 113, 0.7);
+}
+
+/* 登录卡片样式 */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.login-card {
+  max-width: 450px;
+  width: 100%;
+  cursor: default;
+  background: transparent;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+  background: transparent;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #334155;
+}
+
+.form-group input {
+  padding: 12px 16px;
+  border: none;
+  border-bottom: 2px solid rgba(212, 212, 212, 0.5);
+  border-radius: 0;
+  font-size: 15px;
+  transition: all 0.3s;
+  background: transparent;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-bottom-color: #FF6D5A;
+  background: transparent;
+}
+
+.form-group input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-hint {
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+.btn-login {
+  width: 100%;
+  margin-top: 16px;
+  padding: 14px;
+  font-size: 16px;
+  border: none;
+}
+
+.btn-login:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.login-note {
+  text-align: center;
+  font-size: 13px;
+  color: #94a3b8;
+  margin-top: 0;
+}
+
+.login-divider {
+  margin: 20px 0;
+  text-align: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.login-divider::before,
+.login-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(100, 116, 139, 0.2);
+}
+
+.login-divider span {
+  color: #94a3b8;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+/* 邮箱显示 - 复用user-name样式 */
+.user-email {
+  color: #64748b;
+  font-size: 13px;
+}
+
+/* 模态框 - 复用login-card样式 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #ffffff;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.3);
+  padding: 0;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  border-bottom: 1px solid rgba(100, 116, 139, 0.1);
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #1e293b;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0;
+}
+
+.modal-close:hover {
+  color: #64748b;
+}
+
+.modal-body {
+  padding: 24px;
+}
+
+.modal-body button {
+  border: none;
+}
+
+.email-link {
+  color: #FF6D5A;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.email-link:hover {
+  text-decoration: underline;
+}
+
+.modal-description {
+  color: #475569;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.modal-hint {
+  color: #94a3b8;
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+/* 登录标签页 */
+.login-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(100, 116, 139, 0.1);
+}
+
+.login-tab {
+  flex: 1;
+  padding: 12px;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.login-tab.active {
+  color: #FF6D5A;
+  border-bottom: 2px solid #FF6D5A;
+}
+
+.login-hint {
+  color: #475569;
+  font-size: 13px;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: rgba(255, 109, 90, 0.05);
+  border-radius: 8px;
+}
+
+.login-email-actions {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+

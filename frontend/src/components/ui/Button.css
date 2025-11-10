@@ -1,0 +1,101 @@
+/* 统一按钮样式 */
+
+.btn {
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* 尺寸 */
+.btn-small {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.btn-medium {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.btn-large {
+  padding: 12px 24px;
+  font-size: 16px;
+}
+
+/* 主要按钮 */
+.btn-primary {
+  background: linear-gradient(135deg, #7dd3fc 0%, #5eead4 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(125, 211, 252, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+  box-shadow: 0 4px 12px rgba(125, 211, 252, 0.4);
+}
+
+/* 次要按钮 */
+.btn-secondary {
+  background: rgba(148, 163, 184, 0.1);
+  color: #475569;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: rgba(148, 163, 184, 0.2);
+  border-color: rgba(148, 163, 184, 0.5);
+}
+
+/* 危险按钮 */
+.btn-danger {
+  background: rgba(254, 226, 226, 0.8);
+  color: #dc2626;
+  border: 1px solid rgba(252, 165, 165, 0.5);
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: rgba(254, 202, 202, 0.9);
+  border-color: rgba(248, 113, 113, 0.7);
+}
+
+/* 成功按钮 */
+.btn-success {
+  background: linear-gradient(135deg, #86efac 0%, #34d399 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(52, 211, 153, 0.3);
+}
+
+.btn-success:hover:not(:disabled) {
+  box-shadow: 0 4px 12px rgba(52, 211, 153, 0.4);
+}
+
+/* 链接按钮 */
+.btn-link {
+  background: transparent;
+  color: #0284c7;
+  padding: 4px 8px;
+  text-decoration: none;
+}
+
+.btn-link:hover:not(:disabled) {
+  text-decoration: underline;
+  background: rgba(224, 242, 254, 0.3);
+}
+
+/* 状态 */
+.btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-loading {
+  opacity: 0.7;
+  cursor: wait;
+}
+
